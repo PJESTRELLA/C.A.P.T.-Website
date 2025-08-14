@@ -1,0 +1,68 @@
+* { /*browser margin */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Full viewport height so % heights inside work */
+    background-color: #F8FAFC;
+    background-image: url(/Resources/login-page/login-bg.png);
+    background-size: cover;       /* Fill without stretching */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat; /* Avoid tiling */
+}
+
+.login-design{
+  width: 70%;
+  height: 100%;
+  padding: 2%;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center; /* Vertically center */
+  font-family:'Courier New', Courier, monospace;
+}
+
+.login-logo {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.logo-header p {
+  font-size:40px;
+  font-weight: bold;
+  margin: 0; /* Remove default paragraph margin */
+  color: white;
+}
+
+.login-page{
+  Width: 30%;
+  height: 100%;
+  padding: 5%;
+  background-color: #fbfdff;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  display: flex;               /* Make it a flex container */
+  flex-direction: column;      /* Stack items vertically */
+  justify-content: center;     /* Center vertically */
+  align-items: center;         /* Center horizontally */  
+  color: #1E3A8A;
+  font-family:'Courier New', Courier, monospace;
+}
+
+.login-button{
+  border-radius: 20px;
+  border-color: #1E3A8A;
+  background-color: #1E3A8A;
+  padding:2%;
+  color: white;
+  width: 70%;
+  font-size: 15px;
+
+}
+
