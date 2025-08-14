@@ -55,13 +55,21 @@
   font-family:'Courier New', Courier, monospace;
 }
 
+.details-input{
+    width: 100%;          
+    max-width: 250px;   
+    min-width: 100px;    
+}
+
 .login-button{
   border-radius: 20px;
   border-color: #1E3A8A;
   background-color: #1E3A8A;
   padding:2%;
   color: white;
-  width: 70%;
+  width: 50%;          
+  max-width: 250px;   
+  min-width: 100px; 
   font-size: 15px;
 
 }
