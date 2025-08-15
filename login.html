@@ -19,7 +19,7 @@
     <div class = "login-page">
       <h1>Login Account</h1>
       <br>
-      <p>No account yet? Create one here</p>
+      <p>No account yet? <a href="#" onclick="CreateAccount()">Create one here</a></p>
       <br>
       <div class = "details">
         <p>Email:</p>
@@ -33,4 +33,42 @@
     </div>
   </div>
 </body>
+<script>
+  function CreateAccount(){
+    document.querySelector(".login-page").innerHTML = `     
+      <div class = "create-account">
+        <form action="/submit" method="post">
+            <h2>Sign Up</h2>
+            
+            <label for="name">Name:</label>
+            <br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="birthDate">Birth Date:</label>
+            <br>
+            <input type="date" id="birthDate" name="birthDate" required><br><br>
+
+            <label for="username">Username:</label>
+            <br>
+            <input type="text" id="username" name="username" required><br><br>
+            
+            <label for="email">Email:</label>
+            <br>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="password">Password:</label>
+            <br>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">I consent to all the terms & conditions</label>
+            <br><br>
+            
+            
+            <button>Register</button>
+        </form>
+      </div>`;
+  }
+
+</script>
 </html>
