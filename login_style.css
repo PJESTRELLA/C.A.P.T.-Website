@@ -16,7 +16,7 @@
 }
 
 .login-design{
-  width: 70%;
+  width: 80%;
   height: 100%;
   padding: 2%;
 }
@@ -50,18 +50,17 @@
   display: flex;               /* Make it a flex container */
   flex-direction: column;      /* Stack items vertically */
   justify-content: center;     /* Center vertically */
-  align-items: center;         /* Center horizontally */  
   color: #1E3A8A;
   font-family:'Courier New', Courier, monospace;
 }
 
-.details-input{
-    width: 100%;          
-    max-width: 250px;   
-    min-width: 100px;    
+.details-input {
+  width: 100%;
+  box-sizing: border-box; /* ensures padding and borders don’t break the width */
+  align-self: center;
 }
 
-.login-button{
+.blue-button{
   border-radius: 20px;
   border-color: #1E3A8A;
   background-color: #1E3A8A;
@@ -71,6 +70,14 @@
   max-width: 250px;   
   min-width: 100px; 
   font-size: 15px;
+  display: block;
+  margin: 0 auto;
 
+}
+
+.sign-input {
+  width: 100%;
+  box-sizing: border-box; /* ensures padding and borders don’t break the width */
+  align-self: center;
 }
 

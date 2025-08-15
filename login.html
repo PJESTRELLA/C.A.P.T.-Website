@@ -2,73 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="login_style.css">
   <title>C.A.P.T. Login</title>
 </head>
 <body>
-  <div class = "container">
-    <div class = "login-design">
+  <div class="container">
+    <div class="login-design">
       <div class="logo-header">
         <img src="Resources/login-page/logo-placeholder.png" class="login-logo" alt="Logo">
         <p>C.A.P.T</p>
       </div>
-      <div class = "login-information">
+      <div class="login-information">
       </div>
     </div>
-    <div class = "login-page">
+    <div class="login-page">
       <h1>Login Account</h1>
       <br>
-      <p>No account yet? <a href="#" onclick="CreateAccount()">Create one here</a></p>
+      <p>No account yet? <a href="#" onclick="CreateAccount()">Create one here.</a></p>
       <br>
-      <div class = "details">
-        <p>Email:</p>
-        <input type = "email" class = "details-input">
-        <br><br>
-        <p>Password:</p>
-        <input type = "password" class = "details-input">
-      </div>
+        <label for="email">Email:</label>
+        <input type="email" class="details-input" id = "email">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password"class="details-input" id="password"><br><br>
+
       <br>
-      <button class = "login-button">Login</button>
+      <button class="blue-button">Login</button>
     </div>
   </div>
-</body>
-<script>
-  function CreateAccount(){
-    document.querySelector(".login-page").innerHTML = `     
-      <div class = "create-account">
-        <form action="/submit" method="post">
-            <h2>Sign Up</h2>
-            
-            <label for="name">Name:</label>
-            <br>
-            <input type="text" id="name" name="name" required><br><br>
 
-            <label for="birthDate">Birth Date:</label>
-            <br>
-            <input type="date" id="birthDate" name="birthDate" required><br><br>
-
-            <label for="username">Username:</label>
-            <br>
-            <input type="text" id="username" name="username" required><br><br>
-            
-            <label for="email">Email:</label>
-            <br>
-            <input type="email" id="email" name="email" required><br><br>
-            
-            <label for="password">Password:</label>
-            <br>
-            <input type="password" id="password" name="password" required><br><br>
-
-            <input type="checkbox" id="consent" name="consent" required>
-            <label for="consent">I consent to all the terms & conditions</label>
+  <script>
+    function CreateAccount() {
+      document.querySelector(".login-page").innerHTML = `
+        <div class="create-account">
+          <form action="/submit" method="post">
+            <h1>Sign Up</h1>
             <br><br>
             
-            
-            <button>Register</button>
-        </form>
-      </div>`;
-  }
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" class = "sign-input" required><br><br>
 
-</script>
+            <label for="birthDate">Birth Date:</label><br>
+            <input type="date" id="birthDate" name="birthDate" class = "sign-input" required><br><br>
+
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" class = "sign-input" required><br><br>
+            
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" class = "sign-input" required><br><br>
+            
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" class = "sign-input" required><br><br>
+
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">I consent to all the terms & conditions</label><br><br>
+            
+            <button type="submit" class="blue-button">Register</button><br><br>
+            <p>Have an account? <a href="#" onclick="ReturntoLogin()">Login here!</a></p>
+          </form>
+        </div>`;
+    }
+
+    function ReturntoLogin() {
+      document.querySelector(".login-page").innerHTML = `
+        <h1>Login Account</h1>
+        <br>
+        <p>No account yet? <a href="#" onclick="CreateAccount()">Create one here</a></p>
+        <br>
+        <div class="details">
+          <p>Email:</p>
+          <input type="email" class="details-input">
+          <br><br>
+          <p>Password:</p>
+          <input type="password" class="details-input">
+        </div>
+        <br>
+        <button class="blue-button">Login</button>
+      `;
+    }
+  </script>
+</body>
 </html>
