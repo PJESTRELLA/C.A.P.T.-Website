@@ -17,24 +17,26 @@
       </div>
     </div>
     <div class="login-page">
-      <h1>Login Account</h1>
-      <br>
-      <p>No account yet? <a href="#" onclick="CreateAccount()">Create one here.</a></p>
-      <br>
-        <label for="email">Email:</label>
-        <input type="email" class="details-input" id = "email">
+      <div class = "login-container">
+        <h1>Login Account</h1>
         <br>
-        <label for="password">Password:</label>
-        <input type="password"class="details-input" id="password"><br><br>
+        <p>No account yet? <a href="#" onclick="CreateAccount()">Create one here.</a></p>
+        <br>
+          <label for="email">Email:</label>
+          <input type="email" class="details-input" id = "email">
+          <br>
+          <label for="password">Password:</label>
+          <input type="password"class="details-input" id="password"><br><br>
 
-      <br>
-      <button class="blue-button">Login</button>
+        <br>
+        <button class="blue-button">Login</button>
+      </div>
     </div>
   </div>
 
   <script>
     function CreateAccount() {
-      document.querySelector(".login-page").innerHTML = `
+      document.querySelector(".login-container").innerHTML = `
         <div class="create-account">
           <form action="/submit" method="post">
             <h1>Sign Up</h1>
@@ -65,7 +67,7 @@
     }
 
     function ReturntoLogin() {
-      document.querySelector(".login-page").innerHTML = `
+      document.querySelector(".login-container").innerHTML = `
         <h1>Login Account</h1>
         <br>
         <p>No account yet? <a href="#" onclick="CreateAccount()">Create one here</a></p>
