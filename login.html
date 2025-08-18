@@ -10,18 +10,18 @@
   <div class="container">
     <div class="login-design">
       <div class="logo-header">
-        <img src="Resources/login-page/logo-placeholder.png" class="login-logo" alt="Logo">
-        <p>C.A.P.T</p>
+        <img src="Resources\login-page\logo-white.png" class="login-logo" alt="Logo">
       </div>
       <div class="login-information">
+          <img src="Resources\login-page\login-design.png" class="login-picture" alt="Logo">
       </div>
     </div>
 
     <div class="login-page">
       <div class="login-container">
-        <h1>Login Account</h1>
+        <img src="Resources\login-page\login-message.png" class="login-message" alt="Logo">
         <br>
-        <p>No account yet? <a href="#" onclick="CreateAccount()">Create one here.</a></p>
+        <p>No account yet? <a href="#" onclick="CreateAccount()" style="text-decoration: none;">Create one here.</a></p><br>
         <br>
         <form class = "details-container" action="login.php" method="POST">
           <label class = "details-label" for="email">Email:</label>
@@ -29,11 +29,10 @@
           <br><br>
           <label class = "details-label" for="password">Password:</label>
           <input type="password" class="details-input" id="password" name="password" required>
-          <br><br>
+          <br><br><br>
 
-          <button type="submit" class="blue-button">Login</button>
+          <button type="submit" class="blue-button">LOGIN</button>
         </form>
-
       </div>
     </div>
   </div>
@@ -41,7 +40,7 @@
 <script>
   function CreateAccount(){
     document.querySelector(".login-container").innerHTML = `     
-      <div class = "create-account">
+      <div class = "create-account" style = "color: #053969;">
         <form action="submit.php" method="post">
             <h1>Create Account</h1><br><br>
             
@@ -63,27 +62,27 @@
             <input type="checkbox" id="consent" name="consent" required>
             <label for="consent">I consent to all the terms & conditions</label><br><br>
             
-            <button type="submit" class="blue-button">Register</button><br><br>
-            <p>Have an account? <a href="#" onclick="ReturntoLogin()">Login here!</a></p>
+            <button type="submit" class="blue-button">REGISTER</button><br><br>
+            <p>Have an account? <a href="#" onclick="ReturntoLogin()" style="text-decoration: none;">Login here!</a></p>
           </form>
         </div>`;
     }
 
     function ReturntoLogin() {
       document.querySelector(".login-container").innerHTML = `
-        <h1>Login Account</h1>
+        <img src="Resources/login-page/login-message.png" class="login-message" alt="Logo">
         <br>
-        <p>No account yet? <a href="#" onclick="CreateAccount()">Create one here.</a></p>
+        <p>No account yet? <a href="#" onclick="CreateAccount()" style="text-decoration: none;">Create one here.</a></p><br>
         <br>
-        <form class = "details-container" action="login.php" method="POST">
-          <label class = "details-label" for="email">Email:</label>
+        <form class="details-container" action="login.php" method="POST">
+          <label class="details-label" for="email">Email:</label>
           <input type="email" class="details-input" id="email" name="email" required>
           <br><br>
-          <label class = "details-label" for="password">Password:</label>
+          <label class="details-label" for="password">Password:</label>
           <input type="password" class="details-input" id="password" name="password" required>
-          <br><br>
+          <br><br><br>
 
-          <button type="submit" class="blue-button">Login</button>
+          <button type="submit" class="blue-button">LOGIN</button>
         </form>
       `;
     }

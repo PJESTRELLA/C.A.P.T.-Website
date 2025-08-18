@@ -10,7 +10,7 @@
     width: 100%;
     height: 100vh; /* Full viewport height so % heights inside work */
     background-color: #F8FAFC;
-    background-image: url(/Resources/login-page/login-bg.png);
+    background-image: url(Resources/login-page/login-bg.jpg);
     background-size: cover;       /* Fill without stretching */
     background-position: center;  /* Center the image */
     background-repeat: no-repeat; /* Avoid tiling */
@@ -29,7 +29,7 @@
 }
 
 .login-logo {
-  width: 30px;
+  width: 100px;
   height: auto;
   margin-right: 10px;
 }
@@ -39,6 +39,17 @@
   font-weight: bold;
   margin: 0; /* Remove default paragraph margin */
   color: white;
+}
+
+.login-information{
+  display: flex;
+  justify-content: center;     /* Center horizontally inside this column */
+  align-items: center;         /* Center vertically inside this column */
+}
+
+.login-picture{
+  padding-top: 7%;
+  width: 80%;
 }
 
 .login-page {
@@ -68,30 +79,35 @@
   text-align: center; 
 }
 
+.login-message{
+  width: 100%;  
+}
+
 .details-container {
-  width: 70%;
+  width: 100%;
 }
 
 .details-label {
   display: block;       /* ✅ forces label to occupy full line */
-  text-align: left;    
+  text-align: left;  
+  color:black;  
 }
 
 .details-input {
   width: 100%;
   box-sizing: border-box;
-  background-color: #E0DBD8;
+  background-color: white;
   border: 1px solid black;
   padding: 2px;
 }
 
 .blue-button {
   border-radius: 20px;
-  border: 2px solid #1800AD;
-  background-color: #1800AD;
+  border: 2px solid #053969;
+  background-color: #053969;
   padding: 2%;
   color: white;
-  width: 70%;
+  width: 100%;
   max-width: 250px;
   min-width: 100px;
   font-size: 15px;
@@ -107,7 +123,7 @@
 
 .blue-button:hover {
   background-color: white;  /* Light blue */
-  color: #1800AD;             /* Original button color */
+  color: #053969;             /* Original button color */
   transform: scale(1.01);     /* Optional subtle zoom */
 }
 
@@ -115,7 +131,7 @@
   width: 100%;
   box-sizing: border-box; /* ensures padding and borders don’t break the width */
   align-self: center;
-  background-color: #E0DBD8;
+  background-color: white;
   border: 1px solid black; /* fixed border */
   padding: 2px; /* optional: adds space inside */
 }
@@ -142,6 +158,11 @@
     justify-content: center;  /* horizontal centering if flex child has flex items */
     margin: 0 auto;           /* horizontal centering for block inside flex */
   }
+
+  .login-picture{
+    width: 0%;
+  }
+
 
   .login-page {
       width: 100%;
