@@ -25,7 +25,7 @@
 .logo-header {
   display: flex;
   align-items: center; /* Vertically center */
-  font-family:'Courier New', Courier, monospace;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .login-logo {
@@ -47,8 +47,8 @@
   display: flex;
   justify-content: center;     /* Center horizontally inside this column */
   align-items: center;         /* Center vertically inside this column */
-  font-family: 'Courier New', Courier, monospace;
-  color: #1E3A8A;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: black;
   padding: 20px;
 }
 
@@ -63,34 +63,61 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;  
   flex-direction: column;
-  justify-content: center;
+  justify-content: center;   /* Center vertically inside container */
+  align-items: center;       /* Center horizontally inside container */
+  text-align: center; 
+}
+
+.details-container {
+  width: 70%;
+}
+
+.details-label {
+  display: block;       /* ✅ forces label to occupy full line */
+  text-align: left;    
 }
 
 .details-input {
   width: 100%;
-  box-sizing: border-box; /* ensures padding and borders don’t break the width */
-  align-self: center;
+  box-sizing: border-box;
+  background-color: #E0DBD8;
+  border: 1px solid black;
+  padding: 2px;
 }
 
-.blue-button{
+.blue-button {
   border-radius: 20px;
-  border-color: #1E3A8A;
-  background-color: #1E3A8A;
-  padding:2%;
+  border: 2px solid #1800AD;
+  background-color: #1800AD;
+  padding: 2%;
   color: white;
-  width: 50%;          
-  max-width: 250px;   
-  min-width: 100px; 
+  width: 70%;
+  max-width: 250px;
+  min-width: 100px;
   font-size: 15px;
   display: block;
   margin: 0 auto;
+  cursor: pointer;
 
+  /* Smooth fade and scale */
+  transition: background-color 0.8s ease-in-out, 
+              color 0.8s ease-in-out, 
+              transform 0.3s ease-in-out;
+}
+
+.blue-button:hover {
+  background-color: white;  /* Light blue */
+  color: #1800AD;             /* Original button color */
+  transform: scale(1.01);     /* Optional subtle zoom */
 }
 
 .sign-input {
   width: 100%;
   box-sizing: border-box; /* ensures padding and borders don’t break the width */
   align-self: center;
+  background-color: #E0DBD8;
+  border: 1px solid black; /* fixed border */
+  padding: 2px; /* optional: adds space inside */
 }
 
 @media (max-width: 900px) {
@@ -99,11 +126,6 @@
       flex-direction: column;
       width: 100%;
       height: 100vh; /* Full viewport height so % heights inside work */
-      background-color: #F8FAFC;
-      background-image: url(/Resources/login-page/login-bg.png);
-      background-size: cover;       /* Fill without stretching */
-      background-position: center;  /* Center the image */
-      background-repeat: no-repeat; /* Avoid tiling */
   }
 
   .login-design {
@@ -115,47 +137,17 @@
   .logo-header {
     display: flex;
     align-items: center; /* Vertically center */
-    font-family:'Courier New', Courier, monospace;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     align-self: center;       /* vertical centering in flex row */
     justify-content: center;  /* horizontal centering if flex child has flex items */
     margin: 0 auto;           /* horizontal centering for block inside flex */
   }
 
-  .login-logo {
-    width: 30px;
-    height: auto;
-    margin-right: 10px;
-  
-  }
-
-  .logo-header p {
-    font-size:40px;
-    font-weight: bold;
-    margin: 0; /* Remove default paragraph margin */
-    color: white;
-  }
-
   .login-page {
       width: 100%;
-      height: 100vh;               /* give it full screen height */
+      height: 100vh; 
       display: flex;
-      justify-content: center;     /* center horizontally */
-      align-items: center;         /* center vertically */
-      font-family: 'Courier New', Courier, monospace;
-      color: #1E3A8A;
-      padding: 20px;
   }
-  /* The actual login container box */
-  .login-container {
-    background-color: white;
-    width: 100%;                 /* Use full width of .login-page */
-    max-width: 350px;            /* But don’t get too big on large screens */
-    height: 100%;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: flex;  
-    flex-direction: column;
-    justify-content: center;
-  }
+
+
 }
