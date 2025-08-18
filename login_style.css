@@ -124,7 +124,7 @@
 .blue-button:hover {
   background-color: white;  /* Light blue */
   color: #053969;             /* Original button color */
-  transform: scale(1.01);     /* Optional subtle zoom */
+  transform: scale(1.02);     /* Optional subtle zoom */
 }
 
 .sign-input {
