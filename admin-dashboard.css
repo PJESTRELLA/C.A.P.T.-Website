@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: whitesmoke;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* HEADER */
+.header {
+  background-color: #053969;
+  width: 100%;
+  height: 10vh; /* better to use vh instead of % for height */
+  display: flex;
+  align-items: stretch; /* children will fill full height */
+}
+
+.header-logo-container {
+  width: 4%;
+  height: 100%;
+  display: flex; /* so the image can be centered */
+  align-items: center;
+}
+
+.header-logo {
+  height: 100%; /* makes the image follow header height */
+  width: auto;   /* keeps aspect ratio */
+  padding: 10px; /* optional, can remove for full fit */
+  object-fit: contain; /* prevents distortion */
+}
+
+.header-greetings {
+  width: 66%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  font-size: 1.5rem;
+  padding-left: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header-greetings-mobile {
+  display: none;
+}
+
+
+.header-button-container {
+  width: 30%;
+  display: flex;
+  padding-right: 10px;
+  gap: 10px;
+}
+
+.header-button {
+  flex: 1;
+  height: 100%;
+  padding: 12px;
+  color: white;
+  font-size: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.header-button:hover{
+  background-color: #275c9d;
+  color: white;
+  transition: background-color 0.3s, color 1s;
+}
+
+.mobile-menu-container {
+  display: none; /* hidden on desktop */
+}
+
+/* SIDE PANEL */
+.side-panel {
+  height: 100%;
+  width: 0; /* hidden by default */
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #053969;
+  overflow-x: hidden;
+  transition: width 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  padding-top: 60px;
+  z-index: 1000;
+  box-shadow: none;
+  transform: translateX(10px);
+}
+
+.side-panel.active {
+  width: 250px; 
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4);
+  transform: translateX(0);
+}
+
+/* Links inside */
+.side-panel a {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.side-panel a:hover {
+  background-color: #275c9d;
+  transform: translateX(5px); /* subtle hover movement */
+}
+
+/* Close button */
+.side-panel .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.side-panel .close-btn:hover {
+  transform: rotate(90deg);
+}
+
+/* MOBILE VIEW */
+@media (max-width: 900px) {
+  .header {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .header-logo-container {
+    width: 90%; /* shrink to fit logo */
+    justify-content: center; /* center horizontally */
+  }
+
+  .header-logo-container {
+    width: auto; /* shrink to fit logo */
+    justify-content: flex-start;
+    padding-left: 10PX;
+  }
+
+  .header-logo {
+    height: 50px;
+    width: auto;
+    padding: 0;
+  }
+
+  /* Hide full greeting */
+  .header-greetings {
+    display: none;
+  }
+
+  /* Show short greeting */
+  .header-greetings-mobile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    font-size: 1.5rem;
+    padding-left: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+
+  .header-button-container {
+    display: none;
+  }
+
+  .mobile-menu-container {
+    display: block;
+    width: 10%;
+  }
+
+  .mobile-menu-button {
+    padding-right: 12px;
+    height: auto;
+    font-size: 1.2rem; /* better for readability */
+    border: none;
+    background-color: #ffffff00;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .side-panel.active {
+    width: 250px;
+  }
+}

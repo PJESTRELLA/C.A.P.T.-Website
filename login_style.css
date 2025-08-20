@@ -32,6 +32,7 @@
   width: 100px;
   height: auto;
   margin-right: 10px;
+  animation: fadeIn 2s ease-in forwards;
 }
 
 .logo-header p {
@@ -47,9 +48,11 @@
   align-items: center;         /* Center vertically inside this column */
 }
 
-.login-picture{
+.login-picture {
   padding-top: 7%;
-  width: 80%;
+  width: 80%; /* Keep width fixed */
+  opacity: 0; /* Start fully transparent */
+  animation: fadeIn 3s ease-in forwards;
 }
 
 .login-page {
@@ -77,6 +80,7 @@
   justify-content: center;   /* Center vertically inside container */
   align-items: center;       /* Center horizontally inside container */
   text-align: center; 
+  animation: fadeIn 3s ease-in forwards;
 }
 
 .login-message{
@@ -172,3 +176,13 @@
 
 
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
