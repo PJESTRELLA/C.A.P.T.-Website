@@ -20,10 +20,11 @@
         $result = $conn->query($sql);
 
         if($result->num_rows > 0){
-            header("Location: login.php");
-            exit();
+        echo "<h1>Form Data Received</h1>";
+        echo "<strong>Email</strong>: {$email}<br>";
+        echo "<strong>Password</strong>: {$password}";
         } else{
-            echo "Invalid credentials.";
+            echo "<script>alert('Invalid Credentials');</script>";
         }
     }
 ?>

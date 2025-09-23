@@ -20,8 +20,13 @@
         $sql = "INSERT INTO user (name, birthDate, username, email, password) VALUES ('$name', '$birthDate', '$username', '$email', '$password')";
 
         if($conn->query($sql) === TRUE){
-            header("Location: register.php");
-            exit();
+        echo "<h1>Form Data Received</h1>";
+
+        echo "<strong>Name</strong>: {$name}<br>";
+        echo "<strong>Birth Date</strong>: {$birthDate}<br>";
+        echo "<strong>Username</strong>: {$username}<br>";
+        echo "<strong>Email</strong>: {$email}<br>";
+        echo "<strong>Password</strong>: {$password}<br>";
         } else{
             echo "Error!";
         }
