@@ -24,7 +24,7 @@
         <br>
         <p>No account yet? <a href="#" onclick="CreateAccount()" style="text-decoration: none;">Create one here.</a></p><br>
         <br>
-        <form class = "details-container" action="login.php" method="POST">
+        <form class = "details-container" action="db_access.php" method="POST">
           <label class = "details-label" for="email">Email:</label>
           <input type="email" class="details-input" id="email" name="email" required>
           <br><br>
@@ -42,7 +42,7 @@
   function CreateAccount(){
     document.querySelector(".login-container").innerHTML = `     
       <div class = "create-account" style = "color: #053969;">
-        <form action="register.php" method="post">
+        <form action="db_append.php" method="post">
             <h1>Create Account</h1><br><br>
             
             <label class = "details-label" for="name">Name:</label>
