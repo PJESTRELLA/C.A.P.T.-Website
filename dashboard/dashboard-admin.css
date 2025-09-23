@@ -47,7 +47,7 @@
 
 .navigation-div {
   height: 100%;
-  width: 30%; /*Adjust div for nav here*/
+  width: 40%; /*Adjust div for nav here*/
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -55,20 +55,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: transparent;
 }
 
 .navigation-btn {
   flex: 1; /* evenly distribute available space */
   height: 100%; 
   border: none;
-  background-color: #053969;
+  background-color: transparent;
   color: white;
   font-family: 'poppins', Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
 }
 
 .navigation-btn:hover {
-  background-color: #085196;
+  background-color: #044480;
+  color: white;
+}
+
+.profile-btn {
+  height: 100%; 
+  border: none;
+  background-color: transparent;
+  color: white;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.profile-img {
+  height: 50px;   
+  width: auto;
+}
+
+.profile-btn:hover {
+  background-color: #044480;
   color: white;
 }
 
