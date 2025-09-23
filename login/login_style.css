@@ -10,7 +10,7 @@
     width: 100%;
     height: 100vh; /* Full viewport height so % heights inside work */
     background-color: #F8FAFC;
-    background-image: url(Resources/login-page/login-bg.jpg);
+    background-image: url(/Resources/login-page/login-bg.jpg);
     background-size: cover;       /* Fill without stretching */
     background-position: center;  /* Center the image */
     background-repeat: no-repeat; /* Avoid tiling */
