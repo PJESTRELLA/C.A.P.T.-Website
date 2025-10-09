@@ -1,42 +1,34 @@
 <?php
-    $servername = "localhost";
-    $username = "u362083597_captofficial";
-    $password = "BarangaySystem2025";
-    $dbname = "u362083597_test_userAuth";
+    declare(strict_types=1);
+    ini_set('display_errors', '1');
+    error_reporting(E_ALL);
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error){
-        die("Failed connection :(.");
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        http_response_code(405);
+        exit('Method Not Allowed');
     }
 
-    $raiseError = "";
-
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        $statement = $conn->prepare("SELECT * FROM user where email = ?");
-        $statement->bind_param("s", $email);
-        $statement->execute();
-        $result = $statement->get_result();
-
-        if($result && $result->num_rows > 0){
-            $row = $result->fetch_assoc();
-
-            if(password_verify($password, $row['password'])){
-                header("Location: /dashboard/user/user-bulletin.html");
-                exit();
-            }
-            else{
-                $raiseError = "❎ Password does not match with the registered email.";
-            }
-        } else{
-            $raiseError = "❎ The login credentials you provided are not officially registered.";
-        }
-
-        $statement->close();
+    $mysqli = new mysqli('localhost', 'u362083597_captofficial', 'BarangaySystem2025', 'u362083597_test_userAuth');
+    if ($mysqli->connect_errno) {
+        http_response_code(500);
+        exit('DB connection failed');
     }
 
-    $conn->close();
-?>
+    $email = $_POST['email'] ?? '';
+    $pass  = $_POST['password'] ?? '';
+
+    $stmt = $mysqli->prepare('SELECT password FROM user WHERE email = ?');
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $stmt->bind_result($hash);
+    $found = $stmt->fetch();
+    $stmt->close();
+    $mysqli->close();
+
+    if ($found && password_verify($pass, $hash)) {
+        header('Location: /dashboard/user/user-bulletin.html', true, 303);
+        exit;
+    }
+
+    header('Location: /login.php?err=invalid', true, 303);
+    exit;
