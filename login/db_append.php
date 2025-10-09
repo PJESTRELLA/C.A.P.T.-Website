@@ -68,8 +68,6 @@
                 echo "[ERROR]: " . $e->getMessage();
             }
         } else {
-            $_SESSION['raiseerror'] = $raiseError;
-            exit;
             foreach ($raiseError as $e) { echo "❎ " . htmlspecialchars($e, ENT_QUOTES, 'UTF-8') . "<br>"; }
         }
     }
