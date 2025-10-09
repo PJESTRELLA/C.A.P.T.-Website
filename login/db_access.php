@@ -1,5 +1,5 @@
 <?php
-    header("Location: user/user-bulletin.html");
+    header("Location: dashboard/user/user-bulletin.html");
 
     $servername = "localhost";
     $username = "u362083597_captofficial";
