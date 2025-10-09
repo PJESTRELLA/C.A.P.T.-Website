@@ -36,5 +36,7 @@
             exit;
         }
     }
+    $stmt->close();
+    $mysqli->close();
     header('Location: /login.php?err=invalid', true, 303);
     exit;

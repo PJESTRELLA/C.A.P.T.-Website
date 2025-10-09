@@ -18,6 +18,10 @@
         <h1 class="greeting-web" id="welcome">Welcome, (Name)!</h1>
 
         <script>
+          document.getElementById('welcome').textContent = "Welcome, test!";
+        </script>
+
+        <script>
           fetch('/dashboard/user/user-getdata.php')
             .then(res => res.json())
             .then(data => {
