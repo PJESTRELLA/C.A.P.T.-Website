@@ -48,20 +48,134 @@
         <button class = "navigation-btns">Profile</button>
     </div>
   </header>
+
+  <div class = "option-panel">
+    <button class = "announcements-btn">Announcements</button>
+    <button class = "events-btn">Events</button>
+  </div>
+
+  <div class = "main-body">
+    <div class = "announcements">
+      <H1 class = "announcements-title">Announcements</H1>
+      <div class = "post-feed">
+        <div class = "posts">
+          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
+          <h2 class = "post-title">Main Caption - Announcements</h2>
+          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </h3>
+          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
+        </div>
+        <div class = "posts">
+          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
+          <h2 class = "post-title">Main Caption</h2>
+          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </h3>
+          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
+        </div>
+        <div class = "posts">
+          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
+          <h2 class = "post-title">Main Caption</h2>
+          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </h3>
+          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
+        </div>
+      </div>
+    </div>
+
+    <div class = "events">
+      <H1 class = "events-title">Events</H1>
+      <div class = "post-feed">
+        <div class = "posts">
+          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
+          <h2 class = "post-title">Main Caption - Event</h2>
+          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </h3>
+          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
+        </div>
+        <div class = "posts">
+          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
+          <h2 class = "post-title">Main Caption</h2>
+          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </h3>
+          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
+        </div>
+        <div class = "posts">
+          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
+          <h2 class = "post-title">Main Caption</h2>
+          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </h3>
+          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <script>
     const menuBtn = document.querySelector('.menu-btn');
     const closeBtn = document.querySelector('.close-btn');
     const sidebar = document.querySelector('.sidebar');
 
-    // Show sidebar when menu button is clicked
-    menuBtn.addEventListener('click', () => {
-      sidebar.classList.add('active');
-    });
+    const announcementsBtn = document.querySelector('.announcements-btn');
+    const eventsBtn = document.querySelector('.events-btn');
+    const announcements = document.querySelector('.announcements');
+    const events = document.querySelector('.events');
 
-    closeBtn.addEventListener('click', () => {
-      sidebar.classList.remove('active');
-    });
+    // Sidebar toggle (works everywhere)
+    menuBtn.addEventListener('click', () => sidebar.classList.add('active'));
+    closeBtn.addEventListener('click', () => sidebar.classList.remove('active'));
+
+    // Function to activate the mobile toggle behavior
+    function setupMobileToggle() {
+      // Default mobile state: show announcements only
+      announcements.style.display = 'block';
+      events.style.display = 'none';
+      announcementsBtn.disabled = true;
+      eventsBtn.disabled = false;
+
+      // Button event handlers
+      announcementsBtn.onclick = () => {
+        announcements.style.display = 'block';
+        events.style.display = 'none';
+        announcementsBtn.disabled = true;
+        eventsBtn.disabled = false;
+      };
+
+      eventsBtn.onclick = () => {
+        announcements.style.display = 'none';
+        events.style.display = 'block';
+        announcementsBtn.disabled = false;
+        eventsBtn.disabled = true;
+      };
+    }
+
+    // Function to reset for desktop (both visible, both enabled)
+    function setupDesktopView() {
+      announcements.style.display = 'block';
+      events.style.display = 'block';
+      announcementsBtn.disabled = false;
+      eventsBtn.disabled = false;
+
+      // Remove previous mobile event handlers
+      announcementsBtn.onclick = null;
+      eventsBtn.onclick = null;
+    }
+
+    // Check and apply logic based on screen width
+    function checkScreenSize() {
+      if (window.innerWidth <= 900) {
+        setupMobileToggle();
+      } else {
+        setupDesktopView();
+      }
+    }
+
+    // Run at start and whenever the window resizes
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
   </script>
+
+
   
 </body>
 </html>
