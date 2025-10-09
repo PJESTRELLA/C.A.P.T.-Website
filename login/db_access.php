@@ -1,6 +1,4 @@
 <?php
-    header("Location: dashboard/user/user-bulletin.html");
-
     $servername = "localhost";
     $username = "u362083597_captofficial";
     $password = "BarangaySystem2025";
@@ -39,6 +37,8 @@
 
         $statement->close();
     }
+
+    header("Location: /dashboard/user/user-bulletin.html");
 
     $conn->close();
 ?>
