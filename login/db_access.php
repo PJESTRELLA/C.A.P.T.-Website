@@ -27,7 +27,7 @@
             $row = $result->fetch_assoc();
 
             if(password_verify($password, $row['password'])){
-                header("Location: dashboard/user/user-bulletin.html");
+                header("Location: user/user-bulletin.html");
                 exit();
             }
             else{
