@@ -58,7 +58,7 @@
                 $stmt->execute();
 
                 if ($stmt->affected_rows === 1) {
-                    header("Location: /dashboard/login/login.html");
+                    header("Location: /login/login.html");
                     exit();
                 } else {
                     echo "[WARNING]: Insert ran but no row added.";
