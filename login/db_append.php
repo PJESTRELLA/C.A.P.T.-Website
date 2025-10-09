@@ -1,6 +1,8 @@
 <?php
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // reports sql errors
 
+    session_start();
+
     $servername = "localhost"; 
     $username = "u362083597_captofficial"; 
     $password = "BarangaySystem2025"; 
@@ -13,7 +15,7 @@
     $raiseError = []; // an array of error messages to be raised later on
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $name = $_POST['name'] ?? ''; // Returns empty string if input is empty.
+        $name = ucwords($_POST['name'] ?? ''); // Returns empty string if input is empty.
         $birthDate = $_POST['birthDate'] ?? '';
         $uname = $_POST['username'] ?? '';
         $email = $_POST['email'] ?? '';
@@ -66,6 +68,8 @@
                 echo "[ERROR]: " . $e->getMessage();
             }
         } else {
+            $_SESSION['raiseerror'] = $raiseError;
+            exit;
             foreach ($raiseError as $e) { echo "❎ " . htmlspecialchars($e, ENT_QUOTES, 'UTF-8') . "<br>"; }
         }
     }

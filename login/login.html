@@ -62,12 +62,25 @@
 
             <input type="checkbox" id="consent" name="consent" required>
             <label for="consent">I consent to all the terms & conditions</label><br><br>
-            
+
+            <p hidden id='errors'> </p>
+
             <button type="submit" class="blue-button">REGISTER</button><br><br>
             <p>Have an account? <a href="#" onclick="ReturntoLogin()" style="text-decoration: none;">Login here!</a></p>
           </form>
         </div>`;
     }
+
+    fetch('/dashboard/user/user-geterror.php')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data.raiseerror) && data.raiseerror.length > 0) {
+          const errorstext = document.getElementById('errors');
+          errorstext.hidden = false;
+          errorstext.textContent = data.raiseerror.join('\n');
+        }
+      })
+      .catch(err => console.error('Error fetching user data:', err));
 
     function ReturntoLogin() {
       document.querySelector(".login-container").innerHTML = `
