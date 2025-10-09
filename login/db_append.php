@@ -47,14 +47,12 @@
         }
 
         if (empty($raiseError)) {
-            $hash = password_hash($pwd, PASSWORD_DEFAULT);
-
             $sql = "INSERT INTO `user` (`name`, `birthDate`, `username`, `email`, `password`, `consent`)
                     VALUES (?, ?, ?, ?, ?, ?)";
 
             try {
                 $stmt = $mysqli->prepare($sql);
-                $stmt->bind_param("ssssis", $name, $birthDate, $uname, $email, $hash, $consent);
+                $stmt->bind_param("ssssss", $name, $birthDate, $uname, $email, $pwd, $consent);
                 $stmt->execute();
 
                 if ($stmt->affected_rows === 1) {
