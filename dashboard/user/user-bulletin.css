@@ -342,38 +342,4 @@
     flex-direction: column;
   }
 
-  .option-panel{
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    gap: 20px;
-  }
-
-.announcements-btn,
-.events-btn {
-  background-color: #053969;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  font-size: 18px;
-  font-family: 'Poppins', sans-serif;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  width: 30%;
-}
-
-.announcements-btn:hover:not(:disabled),
-.events-btn:hover:not(:disabled) {
-  background-color: #053969;
-  color: white;
-}
-
-.announcements-btn:disabled,
-.events-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-
 }

@@ -36,17 +36,6 @@
         <h1 class = "greeting-mobile">C.A.P.T.</h1>
       </div>
     </div>
-
-    <div class ="sidebar">
-      <div class = "sidebar-topbar">
-        <h1 class = "sidebar-title">Navigation</h1>
-        <button class = "close-btn">X</button>
-      </div>
-        <button class = "navigation-btns">Bulletin</button>
-        <button class = "navigation-btns">Request</button>
-        <button class = "navigation-btns">Manage</button>
-        <button class = "navigation-btns">Profile</button>
-    </div>
   </header>
 
   <div class = "option-panel">
@@ -108,74 +97,33 @@
         </div>
       </div>
     </div>
-
   </div>
+
+  <div class ="sidebar">
+      <div class = "sidebar-topbar">
+        <h1 class = "sidebar-title">Navigation</h1>
+        <button class = "close-btn">X</button>
+      </div>
+        <button class = "navigation-btns">Bulletin</button>
+        <button class = "navigation-btns">Request</button>
+        <button class = "navigation-btns">Manage</button>
+        <button class = "navigation-btns">Profile</button>
+    </div>
 
   <script>
     const menuBtn = document.querySelector('.menu-btn');
     const closeBtn = document.querySelector('.close-btn');
     const sidebar = document.querySelector('.sidebar');
 
-    const announcementsBtn = document.querySelector('.announcements-btn');
-    const eventsBtn = document.querySelector('.events-btn');
-    const announcements = document.querySelector('.announcements');
-    const events = document.querySelector('.events');
+    // Show sidebar when menu button is clicked
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.add('active');
+    });
 
-    // Sidebar toggle (works everywhere)
-    menuBtn.addEventListener('click', () => sidebar.classList.add('active'));
-    closeBtn.addEventListener('click', () => sidebar.classList.remove('active'));
-
-    // Function to activate the mobile toggle behavior
-    function setupMobileToggle() {
-      // Default mobile state: show announcements only
-      announcements.style.display = 'block';
-      events.style.display = 'none';
-      announcementsBtn.disabled = true;
-      eventsBtn.disabled = false;
-
-      // Button event handlers
-      announcementsBtn.onclick = () => {
-        announcements.style.display = 'block';
-        events.style.display = 'none';
-        announcementsBtn.disabled = true;
-        eventsBtn.disabled = false;
-      };
-
-      eventsBtn.onclick = () => {
-        announcements.style.display = 'none';
-        events.style.display = 'block';
-        announcementsBtn.disabled = false;
-        eventsBtn.disabled = true;
-      };
-    }
-
-    // Function to reset for desktop (both visible, both enabled)
-    function setupDesktopView() {
-      announcements.style.display = 'block';
-      events.style.display = 'block';
-      announcementsBtn.disabled = false;
-      eventsBtn.disabled = false;
-
-      // Remove previous mobile event handlers
-      announcementsBtn.onclick = null;
-      eventsBtn.onclick = null;
-    }
-
-    // Check and apply logic based on screen width
-    function checkScreenSize() {
-      if (window.innerWidth <= 900) {
-        setupMobileToggle();
-      } else {
-        setupDesktopView();
-      }
-    }
-
-    // Run at start and whenever the window resizes
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+    });
   </script>
-
-
   
 </body>
 </html>
