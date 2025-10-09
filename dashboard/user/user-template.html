@@ -21,17 +21,6 @@
           document.getElementById('welcome').textContent = "Welcome, test!";
         </script>
 
-        <script>
-          fetch('/dashboard/user/user-getdata.php')
-            .then(res => res.json())
-            .then(data => {
-              document.getElementById('welcome').textContent =
-                `Welcome, ${data.name}!`;
-            })
-            .catch(err => console.error('Error fetching user data:', err));
-        </script>
-
-
       </div>
       <div class = "navigation-div">
         <button class = "navigation-btn">Bulletin</button>
@@ -77,6 +66,14 @@
     closeBtn.addEventListener('click', () => {
       sidebar.classList.remove('active');
     });
+
+    fetch('/dashboard/user/user-getdata.php')
+            .then(res => res.json())
+            .then(data => {
+              document.getElementById('welcome').textContent =
+                `Welcome, ${data.name}!`;
+            })
+            .catch(err => console.error('Error fetching user data:', err));
   </script>
   
 </body>
