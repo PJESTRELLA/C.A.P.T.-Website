@@ -1,41 +1,42 @@
 <?php
-    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $servername = "localhost";
+    $username = "u362083597_captofficial";
+    $password = "BarangaySystem2025";
+    $dbname = "u362083597_test_userAuth";
 
-    $servername = "localhost"; 
-    $username = "u362083597_captofficial"; 
-    $password = "BarangaySystem2025"; 
-    $dbname = "u362083597_test_userAuth"; 
-    
-    $mysqli = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-    $mysqli->set_charset("utf8mb4");
-
-    $email = isset($_POST['email']) ? strtolower(trim($_POST['email'])) : '';
-    $pwd   = $_POST['password'] ?? '';
-
-    $stmt = $mysqli->prepare("SELECT id, `password` FROM `user` WHERE email = ? LIMIT 1");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows === 1) {
-        $stmt->bind_result($uid, $hash);
-        $stmt->fetch();
-        $ok = password_verify($pwd, $hash);
-
-        if ($ok) {
-            if (ob_get_level()){ 
-                ob_end_clean(); 
-            }
-
-            $url = 'https://' . $_SERVER['HTTP_HOST'] . '/dashboard/user/user-bulletin.html';
-            header("Location: $url", true, 303); // POST → GET
-            exit;
-        }
-    } else {
-        error_log("No user for $email");
+    if ($conn->connect_error){
+        die("Failed connection :(.");
     }
 
-    $stmt->close();
-    $mysqli->close();
+    $raiseError = "";
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $statement = $conn->prepare("SELECT * FROM user where email = ?");
+        $statement->bind_param("s", $email);
+        $statement->execute();
+        $result = $statement->get_result();
+
+        if($result && $result->num_rows > 0){
+            $row = $result->fetch_assoc();
+
+            if(password_verify($password, $row['password'])){
+                header("Location: /dashboard/user/user-bulletin.html");
+                exit();
+            }
+            else{
+                $raiseError = "❎ Password does not match with the registered email.";
+            }
+        } else{
+            $raiseError = "❎ The login credentials you provided are not officially registered.";
+        }
+
+        $statement->close();
+    }
+
+    $conn->close();
 ?>
