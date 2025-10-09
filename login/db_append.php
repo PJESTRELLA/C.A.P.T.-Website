@@ -46,7 +46,7 @@
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             $statement = $conn->prepare("INSERT INTO user (name, birthDate, username, email, password, consent) VALUES (?, ?, ?, ?, ?, ?)");
-            $statement->bind_param("sssss", $name, $birthDate, $username, $email, $hashed_password, $consent);
+            $statement->bind_param("ssssss", $name, $birthDate, $username, $email, $hashed_password, $consent);
 
             if($statement->execute()){
             echo "<h1>Form Data Received</h1>";
