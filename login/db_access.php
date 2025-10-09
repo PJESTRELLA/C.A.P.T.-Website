@@ -31,7 +31,8 @@
         $stmt->fetch(); // returns actual password value
         
         if ($pass === $dbpass) { // checks if registered password and input password are the same. NOTE: SWAP TO password_verify IF MAGH-HASH
-            $_SESSION['name'] = $dbname;
+            $firstname = strtok($dbname, " ");
+            $_SESSION['name'] = $firstname;
             header('Location: /dashboard/user/user-bulletin.html', true, 303); // true -> replace current header, idk what 303 is T_T
             exit;
         }
