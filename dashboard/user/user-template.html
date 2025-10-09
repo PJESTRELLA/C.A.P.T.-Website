@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C.A.P.T. User Dashboard</title>
+  <link rel="stylesheet" href="user-template.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class = "header-div">
+
+    <div class = "header-web">
+      <div class = "logo-greeting-div">
+        <div class = "img-logo-div">
+        <img src = "/Resources/logos/logo-white-short.png" class = "img-logo">
+        </div>
+        <h1 class = "greeting-web">Welcome, (Name)!</h1>
+      </div>
+      <div class = "navigation-div">
+        <button class = "navigation-btn">Bulletin</button>
+        <button class = "navigation-btn">Request</button>
+        <button class = "navigation-btn">Manage</button>
+      </div>
+        <button class = "profile-btn">
+          <img src="/Resources/icons/person-icon.png" class="profile-img" alt="Settings">
+        </button>
+    </div>
+
+    <div class = "header-mobile">
+      <button class = "menu-btn">☰</button>
+      <div class = "logo-title-div">
+        <div class = "img-logo-div-mobile">
+        <img src = "/Resources/logos/logo-white-short.png" class = "img-logo-mobile">
+        </div>
+        <h1 class = "greeting-mobile">C.A.P.T.</h1>
+      </div>
+    </div>
+
+    <div class ="sidebar">
+      <div class = "sidebar-topbar">
+        <h1 class = "sidebar-title">Navigation</h1>
+        <button class = "close-btn">X</button>
+      </div>
+        <button class = "navigation-btns">Bulletin</button>
+        <button class = "navigation-btns">Request</button>
+        <button class = "navigation-btns">Manage</button>
+        <button class = "navigation-btns">Profile</button>
+    </div>
+  </header>
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const closeBtn = document.querySelector('.close-btn');
+    const sidebar = document.querySelector('.sidebar');
+
+    // Show sidebar when menu button is clicked
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+    });
+  </script>
+  
+</body>
+</html>
