@@ -10,21 +10,33 @@
         die("Failed connection :(.");
     }
 
+    $raiseError = "";
+
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $sql = "SELECT * FROM user
-                WHERE email='$email'
-                AND password='$password'";
-        $result = $conn->query($sql);
+        $statement = $conn->prepare("SELECT * FROM user where email = ?");
+        $statement->bind_param("s", $email);
+        $statement->execute();
+        $result = $statement->get_result();
 
-        if($result->num_rows > 0){
-        echo "<h1>Form Data Received</h1>";
-        echo "<strong>Email</strong>: {$email}<br>";
-        echo "<strong>Password</strong>: {$password}";
+        if($result && $result->num_rows > 0){
+            $row = $result->fetch_assoc();
+
+            if(password_verify($password, $row['password'])){
+                header("Location: user-bulletin.html");
+                exit();
+            }
+            else{
+                $raiseError = "❎ Password does not match with the registered email.";
+            }
         } else{
-            echo "<script>alert('Invalid Credentials');</script>";
+            $raiseError = "❎ The login credentials you provided are not officially registered.";
         }
+
+        $statement->close();
     }
+
+    $conn->close();
 ?>
