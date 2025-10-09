@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>C.A.P.T. User Dashboard</title>
+  <!-- Use forward slashes for web paths -->
+  <link rel="stylesheet" href="/dashboard/user/user-request.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <header class="header-div">
+    <div class="header-web">
+      <div class="logo-greeting-div">
+        <div class="img-logo-div">
+          <img src="/Resources/logos/logo-white-short.png" class="img-logo" alt="C.A.P.T. logo"/>
+        </div>
+        <h1 class="greeting-web" id="welcome">Welcome, (Name)!</h1>
+      </div>
+
+      <div class="navigation-div">
+        <button class="navigation-btn">Bulletin</button>
+        <button class="navigation-btn">Request</button>
+        <button class="navigation-btn">Manage</button>
+      </div>
+
+      <button class="profile-btn" aria-label="Profile">
+        <img src="/Resources/icons/person-icon.png" class="profile-img" alt="Settings"/>
+      </button>
+    </div>
+
+    <div class="header-mobile">
+      <button class="menu-btn" aria-label="Open menu">☰</button>
+      <div class="logo-title-div">
+        <div class="img-logo-div-mobile">
+          <img src="/Resources/logos/logo-white-short.png" class="img-logo-mobile" alt="C.A.P.T. logo"/>
+        </div>
+        <h1 class="greeting-mobile">C.A.P.T.</h1>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sidebar-topbar">
+        <h1 class="sidebar-title">Navigation</h1>
+        <button class="close-btn" aria-label="Close menu">X</button>
+      </div>
+      <button class="navigation-btns">Bulletin</button>
+      <button class="navigation-btns">Request</button>
+      <button class="navigation-btns">Manage</button>
+      <button class="navigation-btns">Profile</button>
+    </div>
+  </header>
+
+  <div class="body">
+    <div class="form-border-request">
+      <div class="form-grid">
+        <label for="request-option">Type of Document Request:</label>
+        <!-- Add an id and values that match the switch cases -->
+        <select id="request-option" name="request-option" required>
+          <option value="">Select</option>
+          <option value="clearance">Barangay Clearance</option>
+          <option value="residency">Barangay Certificate of Residency</option>
+          <option value="indigency">Barangay Certificate of Indigency</option>
+          <option value="business">Barangay Certificate of Business</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Dynamic content will be injected here -->
+    <div class="form-border" aria-live="polite" aria-atomic="true">
+      <p>Please select a document type above.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile sidebar toggling
+    const menuBtn = document.querySelector('.menu-btn');
+    const closeBtn = document.querySelector('.close-btn');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (menuBtn && sidebar) {
+      menuBtn.addEventListener('click', () => sidebar.classList.add('active'));
+    }
+    if (closeBtn && sidebar) {
+      closeBtn.addEventListener('click', () => sidebar.classList.remove('active'));
+    }
+  </script>
+
+  <script>
+    const select = document.getElementById('request-option');
+    const formBorder = document.querySelector('.form-border');
+
+    // function that reuses the same form and changes only the title
+    function generateForm(title) {
+      return `
+        <h1 class="title">${title}</h1>
+        <form class="details-container" method="POST" action="/dashboard/user/request/submit-${title.toLowerCase().replace(/ /g, '-')}.php" novalidate>
+          <!-- PART 1: PERSONAL INFORMATION -->
+          <div class="personal-info">
+            <h2 class="section-title">Part 1: Personal Information</h2>
+            <div class="form-grid">
+              <label for="lastname">Last Name:</label>
+              <input id="lastname" type="text" name="lastname" required>
+
+              <label for="firstname">Given Name:</label>
+              <input id="firstname" type="text" name="firstname" required>
+
+              <label for="middlename">Middle Name (If applicable):</label>
+              <input id="middlename" type="text" name="middlename">
+
+              <label for="suffix">Suffix:</label>
+              <input id="suffix" type="text" name="suffix">
+
+              <label for="birthday">Birthday:</label>
+              <input id="birthday" type="date" name="birthday" required>
+
+              <label for="age">Age:</label>
+              <input id="age" type="number" name="age" min="0" required>
+
+              <label for="gender">Gender/Sex:</label>
+              <select id="gender" name="gender" required>
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- PART 2: CONTACT INFORMATION -->
+          <h2 class="section-title">Part 2: Contact Information</h2>
+          <div class="form-grid">
+            <label for="house">House Number / Street Number:</label>
+            <input id="house" type="text" name="house" required>
+
+            <label for="street">Street:</label>
+            <input id="street" type="text" name="street" required>
+
+            <label for="barangay">Barangay:</label>
+            <input id="barangay" type="text" name="barangay" required>
+
+            <label for="city">City:</label>
+            <input id="city" type="text" name="city" required>
+
+            <label for="zip">ZIP:</label>
+            <input id="zip" type="text" name="zip" required>
+
+            <label for="phone">Phone Number:</label>
+            <input id="phone" type="text" name="phone" inputmode="tel">
+
+            <label for="telephone">Telephone Number:</label>
+            <input id="telephone" type="text" name="telephone" inputmode="tel">
+
+            <label for="email">Email Address:</label>
+            <input id="email" type="email" name="email" required>
+          </div>
+
+          <button type="submit" class="blue-button">Submit Request</button>
+        </form>
+      `;
+    }
+
+    select.addEventListener('change', () => {
+      const value = select.value;
+      let title = '';
+
+      switch (value) {
+        case 'clearance':
+          title = 'Barangay Clearance Request Form';
+          break;
+        case 'residency':
+          title = 'Barangay Certificate of Residency Request Form';
+          break;
+        case 'indigency':
+          title = 'Barangay Certificate of Indigency Request Form';
+          break;
+        case 'business':
+          title = 'Barangay Certificate of Business Request Form';
+          break;
+        default:
+          formBorder.innerHTML = '<p>Please select a document type above.</p>';
+          return;
+      }
+
+      // Insert generated form
+      formBorder.innerHTML = generateForm(title);
+    });
+  </script>
+</body>
+</html>
