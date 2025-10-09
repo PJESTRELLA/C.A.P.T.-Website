@@ -1,42 +1,41 @@
 <?php
-    $servername = "localhost";
-    $username = "u362083597_captofficial";
-    $password = "BarangaySystem2025";
-    $dbname = "u362083597_test_userAuth";
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $servername = "localhost"; 
+    $username = "u362083597_captofficial"; 
+    $password = "BarangaySystem2025"; 
+    $dbname = "u362083597_test_userAuth"; 
+    
+    $mysqli = new mysqli($servername, $username, $password, $dbname);
 
-    if ($conn->connect_error){
-        die("Failed connection :(.");
-    }
+    $mysqli->set_charset("utf8mb4");
 
     $raiseError = "";
 
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
 
-        $statement = $conn->prepare("SELECT * FROM user where email = ?");
-        $statement->bind_param("s", $email);
-        $statement->execute();
-        $result = $statement->get_result();
+        $stmt = $mysqli->prepare("SELECT id, `password` FROM `user` WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
 
-        if($result && $result->num_rows > 0){
-            $row = $result->fetch_assoc();
+        $stmt->store_result();
+        if ($stmt->num_rows === 1) {
+            $stmt->bind_result($uid, $hash);
+            $stmt->fetch();
 
-            if(password_verify($password, $row['password'])){
+            if (password_verify($password, $hash)) {
                 header("Location: /dashboard/user/user-bulletin.html");
                 exit();
+            } else {
+                $raiseError = "❎ [ERROR]: Password does not match with the registered email.";
             }
-            else{
-                $raiseError = "❎ Password does not match with the registered email.";
-            }
-        } else{
-            $raiseError = "❎ The login credentials you provided are not officially registered.";
+        } else {
+            $raiseError = "❎ [ERROR]: The login credentials you provided are not officially registered.";
         }
-
-        $statement->close();
+        $stmt->close();
     }
 
-    $conn->close();
+    $mysqli->close();
 ?>
