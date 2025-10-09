@@ -15,18 +15,18 @@
         <div class = "img-logo-div">
         <img src = "/Resources/logos/logo-white-short.png" class = "img-logo">
         </div>
-        <h1 class = "greeting-web" id="welcome">Welcome, (Name)!</h1>
+        <h1 class="greeting-web" id="welcome">Welcome, (Name)!</h1>
 
         <script>
           fetch('/dashboard/user/user-getdata.php')
             .then(res => res.json())
-
             .then(data => {
               document.getElementById('welcome').textContent =
-                  `Welcome, ${data.name}`;
-              }
-            );
+                `Welcome, ${data.name}!`;
+            })
+            .catch(err => console.error('Error fetching user data:', err));
         </script>
+
 
       </div>
       <div class = "navigation-div">
