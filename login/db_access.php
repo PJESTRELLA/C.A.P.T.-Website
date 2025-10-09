@@ -1,6 +1,6 @@
 <?php
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
+    
     $servername = "localhost"; 
     $username = "u362083597_captofficial"; 
     $password = "BarangaySystem2025"; 
@@ -10,13 +10,13 @@
 
     $mysqli->set_charset("utf8mb4");
 
-    $raiseError = "";
+    if (headers_sent($f,$l)) { error_log("HEADERS SENT at $f:$l"); }
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+        $pwd   = $_POST['password'] ?? '';
 
-        $stmt = $mysqli->prepare("SELECT id, `password` FROM `user` WHERE email = ?");
+        $stmt = $mysqli->prepare("SELECT id, `password` FROM `user` WHERE email=? LIMIT 1");
         $stmt->bind_param("s", $email);
         $stmt->execute();
 
@@ -25,17 +25,11 @@
             $stmt->bind_result($uid, $hash);
             $stmt->fetch();
 
-            if (password_verify($password, $hash)) {
+            if (password_verify($pwd, $hash)) {
+                if (ob_get_level()) { ob_end_clean(); }
                 header("Location: /dashboard/user/user-bulletin.html");
-                exit();
-            } else {
-                $raiseError = "❎ [ERROR]: Password does not match with the registered email.";
+                exit;
             }
-        } else {
-            $raiseError = "❎ [ERROR]: The login credentials you provided are not officially registered.";
         }
-        $stmt->close();
     }
-
-    $mysqli->close();
 ?>
