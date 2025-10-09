@@ -22,7 +22,7 @@
             .then(res => res.json())
             .then(data => {
               document.getElementById('welcome').textContent =
-                `Welcome, ${data.name}!`;
+                `Welcome, Capt. ${data.name}!`;
             })
             .catch(err => console.error('Error fetching user data:', err));
         </script>
