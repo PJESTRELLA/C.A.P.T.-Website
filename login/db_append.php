@@ -18,6 +18,7 @@
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $consent = $_POST['consent'];
 
         if (!preg_match("/^[a-zA-Z ]+$/", $name)) {
             $raiseError[] = "❎ Name must only contain letters and spaces.";
@@ -44,8 +45,8 @@
         if(empty($raiseError)){
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            $statement = $conn->prepare("INSERT INTO user (name, birthDate, username, email, password) VALUES (?, ?, ?, ?, ?)");
-            $statement->bind_param("sssss", $name, $birthDate, $username, $email, $hashed_password);
+            $statement = $conn->prepare("INSERT INTO user (name, birthDate, username, email, password, consent) VALUES (?, ?, ?, ?, ?, ?)");
+            $statement->bind_param("sssss", $name, $birthDate, $username, $email, $hashed_password, $consent);
 
             if($statement->execute()){
             echo "<h1>Form Data Received</h1>";
