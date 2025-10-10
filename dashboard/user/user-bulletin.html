@@ -134,6 +134,66 @@
       sidebar.classList.remove('active');
     });
   </script>
+  <script>
+    const announcementsBtn = document.querySelector('.announcements-btn');
+    const eventsBtn = document.querySelector('.events-btn');
+    const announcements = document.querySelector('.announcements');
+    const events = document.querySelector('.events');
+
+    function checkWidth() {
+      if (window.innerWidth <= 900) {
+        // Mobile: only one section active at a time
+        announcements.classList.add('active');
+        events.classList.add('active');
+        announcementsBtn.disabled = false;
+        eventsBtn.disabled = false;
+
+        // Default state — show both as active initially
+        announcements.classList.add('active');
+        events.classList.remove('active');
+        announcementsBtn.classList.add('active');
+        eventsBtn.classList.remove('active');
+        announcementsBtn.disabled = true;
+        eventsBtn.disabled = false;
+      } else {
+        // Desktop: both visible
+        announcements.classList.add('active');
+        events.classList.add('active');
+        announcementsBtn.disabled = false;
+        eventsBtn.disabled = false;
+        announcementsBtn.classList.remove('active');
+        eventsBtn.classList.remove('active');
+      }
+    }
+
+    announcementsBtn.addEventListener('click', () => {
+      if (window.innerWidth <= 900) {
+        announcements.classList.add('active');
+        events.classList.remove('active');
+        announcementsBtn.classList.add('active');
+        eventsBtn.classList.remove('active');
+        announcementsBtn.disabled = true;
+        eventsBtn.disabled = false;
+      }
+    });
+
+    eventsBtn.addEventListener('click', () => {
+      if (window.innerWidth <= 900) {
+        events.classList.add('active');
+        announcements.classList.remove('active');
+        eventsBtn.classList.add('active');
+        announcementsBtn.classList.remove('active');
+        eventsBtn.disabled = true;
+        announcementsBtn.disabled = false;
+      }
+    });
+
+    // Initialize
+    checkWidth();
+
+    // Handle screen resizing
+    window.addEventListener('resize', checkWidth);
+  </script>
   
 </body>
 </html>
