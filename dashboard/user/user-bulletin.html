@@ -86,7 +86,7 @@
       <div class = "post-feed">
         <div class = "posts">
           <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
-          <h2 class = "post-title">Main Caption - Event</h2>
+          <h2 class = "post-title">Main Caption - Events</h2>
           <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </h3>
           <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
@@ -140,59 +140,63 @@
     const announcements = document.querySelector('.announcements');
     const events = document.querySelector('.events');
 
-    function checkWidth() {
-      if (window.innerWidth <= 900) {
-        // Mobile: only one section active at a time
+    // Track which pane is selected on mobile.
+    let activePane = 'announcements'; // or read from DOM on load
+
+    const mql = window.matchMedia('(max-width: 900px)');
+
+    function applyLayout() {
+      if (mql.matches) {
+        // Mobile: show only the active pane
+        const showAnnouncements = activePane === 'announcements';
+
+        announcements.classList.toggle('active', showAnnouncements);
+        events.classList.toggle('active', !showAnnouncements);
+
+        announcementsBtn.classList.toggle('active', showAnnouncements);
+        eventsBtn.classList.toggle('active', !showAnnouncements);
+
+        // Enable only the non-active button so tapping switches panes
+        announcementsBtn.disabled = showAnnouncements;
+        eventsBtn.disabled = !showAnnouncements;
+      } else {
+        // Desktop: show both, both enabled, no "active" highlight on buttons
         announcements.classList.add('active');
         events.classList.add('active');
+
         announcementsBtn.disabled = false;
         eventsBtn.disabled = false;
 
-        // Default state — show both as active initially
-        announcements.classList.add('active');
-        events.classList.remove('active');
-        announcementsBtn.classList.add('active');
-        eventsBtn.classList.remove('active');
-        announcementsBtn.disabled = true;
-        eventsBtn.disabled = false;
-      } else {
-        // Desktop: both visible
-        announcements.classList.add('active');
-        events.classList.add('active');
-        announcementsBtn.disabled = false;
-        eventsBtn.disabled = false;
         announcementsBtn.classList.remove('active');
         eventsBtn.classList.remove('active');
       }
     }
 
+    // Button handlers just update state, then apply layout
     announcementsBtn.addEventListener('click', () => {
-      if (window.innerWidth <= 900) {
-        announcements.classList.add('active');
-        events.classList.remove('active');
-        announcementsBtn.classList.add('active');
-        eventsBtn.classList.remove('active');
-        announcementsBtn.disabled = true;
-        eventsBtn.disabled = false;
-      }
+      if (!mql.matches) return;
+      activePane = 'announcements';
+      applyLayout();
     });
 
     eventsBtn.addEventListener('click', () => {
-      if (window.innerWidth <= 900) {
-        events.classList.add('active');
-        announcements.classList.remove('active');
-        eventsBtn.classList.add('active');
-        announcementsBtn.classList.remove('active');
-        eventsBtn.disabled = true;
-        announcementsBtn.disabled = false;
-      }
+      if (!mql.matches) return;
+      activePane = 'events';
+      applyLayout();
     });
 
-    // Initialize
-    checkWidth();
+    // Run once on load
+    applyLayout();
 
-    // Handle screen resizing
-    window.addEventListener('resize', checkWidth);
+    // Only react when crossing the breakpoint
+    mql.addEventListener?.('change', applyLayout);
+
+    // (Optional) Debounce raw resize as a fallback for older browsers
+    let t;
+    window.addEventListener('resize', () => {
+      clearTimeout(t);
+      t = setTimeout(applyLayout, 150);
+    });
   </script>
   
 </body>
