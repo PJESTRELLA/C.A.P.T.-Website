@@ -1,6 +1,19 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+        $servername = "localhost"; 
+        $username = "u362083597_captofficial"; 
+        $password = "BarangaySystem2025"; 
+        $dbname = "u362083597_test_userAuth"; 
+        
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        $mysqli = new mysqli($servername, $username, $password, $dbname);
+        $mysqli->set_charset("utf8mb4");
+        
+        if ($mysqli->connect_error) {
+            die("Connection failed: " . $mysqli->connect_error);
+        }
+
         // Part X: Request Option
         $requestoption = $_POST["request_option"] ?? '';
         
@@ -23,8 +36,46 @@
         $telephone = $_POST["telephone"] ?? '';
         $email = $_POST["email"] ?? '';
 
+        $sql = null;
 
-        echo "<h1>Form Data Received</h1>";
+        switch($requestoption){
+            case 'clearance':
+                $sql = "INSERT INTO `requestedDocument_BarangayClearance` (`lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                break;
+            case 'residency':
+                $sql = "INSERT INTO `requestedDocument_BarangayCertificateResidency` (`lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                break;
+            case 'indigency':
+                $sql = "INSERT INTO `requestedDocument_BarangayCertificateIndigency` (`lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                break;
+            case 'business':
+                $sql = "INSERT INTO `requestedDocument_BarangayCertificateBusiness` (`lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                break;
+            default:
+                die("[ERROR]: Unknown request option.");
+        }
+
+        try {
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("sssssisssssssss", $lastname, $firstname, $middlename, $suffix, $birthday, $age, $gender, $house, $street, $barangay, $city, $zip, $phone, $telephone, $email);
+            $stmt->execute(); // insert actual values into the table 
+
+            if ($stmt->affected_rows === 1) { // checks if one row has been added to the table
+                header("Location: /dashboard/user/user-request.html"); // redirect to request page
+                exit(); // stops code execution
+            } else {
+                echo "[WARNING]: Insert ran but no row added.";
+            }
+                $stmt->close(); // releases stmt (since dynamically allocated)
+        } catch (mysqli_sql_exception $e) {
+            echo "[ERROR]: " . $e->getMessage();
+        }
+
+        /*echo "<h1>Form Data Received</h1>";
 
         echo "<h2>Document Request</h2>";
         echo "<strong>Request Option</strong>: {$requestoption}<br><br>";
@@ -47,7 +98,7 @@
         echo "<strong>ZIP Code</strong>: {$zip}<br>";
         echo "<strong>Phone No.</strong>: {$phone}<br>";
         echo "<strong>Telephone No.</strong>: {$telephone}<br>";
-        echo "<strong>Email</strong>: {$email}<br>";
+        echo "<strong>Email</strong>: {$email}<br>";*/
 
     } else {
         echo "<h1>No data submitted!</h1>";
