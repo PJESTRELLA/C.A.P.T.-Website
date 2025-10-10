@@ -19,9 +19,9 @@
       </div>
 
       <div class="navigation-div">
-        <button class="navigation-btn">Bulletin</button>
-        <button class="navigation-btn">Request</button>
-        <button class="navigation-btn">Manage</button>
+        <button class = "navigation-btn"  onclick="window.location.href='/dashboard/user/user-bulletin.html'" >Bulletin</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-request.html'" >Request</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-template.html'" >Manage</button>
       </div>
 
       <button class="profile-btn" aria-label="Profile">
@@ -37,17 +37,6 @@
         </div>
         <h1 class="greeting-mobile">C.A.P.T.</h1>
       </div>
-    </div>
-
-    <div class="sidebar">
-      <div class="sidebar-topbar">
-        <h1 class="sidebar-title">Navigation</h1>
-        <button class="close-btn" aria-label="Close menu">X</button>
-      </div>
-      <button class="navigation-btns">Bulletin</button>
-      <button class="navigation-btns">Request</button>
-      <button class="navigation-btns">Manage</button>
-      <button class="navigation-btns">Profile</button>
     </div>
   </header>
 
@@ -70,6 +59,17 @@
     <div class="form-border" aria-live="polite" aria-atomic="true">
       <p>Please select a document type above.</p>
     </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-topbar">
+      <h1 class="sidebar-title">Navigation</h1>
+      <button class="close-btn" aria-label="Close menu">X</button>
+    </div>
+    <a class="navigation-btn-side" href="/dashboard/user/user-bulletin.html">Bulletin</a>
+    <a class="navigation-btn-side" href="/dashboard/user/user-request.html">Request</a>
+    <a class="navigation-btn-side" href="/dashboard/user/user-template.html">Manage</a>
+    <a class="navigation-btn-side" href="/dashboard/user/user-template.html">Profile</a>
   </div>
 
   <!-- Scripts -->

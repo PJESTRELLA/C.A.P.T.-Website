@@ -18,9 +18,9 @@
         <h1 class = "greeting-web">Welcome, (Name)!</h1>
       </div>
       <div class = "navigation-div">
-        <button class = "navigation-btn">Bulletin</button>
-        <button class = "navigation-btn">Request</button>
-        <button class = "navigation-btn">Manage</button>
+        <button class = "navigation-btn"  onclick="window.location.href='/dashboard/user/user-bulletin.html'" >Bulletin</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-request.html'" >Request</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-template.html'" >Manage</button>
       </div>
         <button class = "profile-btn">
           <img src="/Resources/icons/person-icon.png" class="profile-img" alt="Settings">
@@ -42,10 +42,10 @@
         <h1 class = "sidebar-title">Navigation</h1>
         <button class = "close-btn">X</button>
       </div>
-        <button class = "navigation-btns">Bulletin</button>
-        <button class = "navigation-btns">Request</button>
-        <button class = "navigation-btns">Manage</button>
-        <button class = "navigation-btns">Profile</button>
+      <a class="navigation-btn-side" href="/dashboard/user/user-bulletin.html">Bulletin</a>
+      <a class="navigation-btn-side" href="/dashboard/user/user-request.html">Request</a>
+      <a class="navigation-btn-side" href="/dashboard/user/user-template.html">Manage</a>
+      <a class="navigation-btn-side" href="/dashboard/user/user-profile.html">Profile</a>
     </div>
   </header>
   <script>

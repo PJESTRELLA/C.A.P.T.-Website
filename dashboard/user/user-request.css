@@ -224,7 +224,7 @@
 
 
 
-@media (max-width: 900px) {
+@media screen and (max-width: 900px) {
   .header-web{
     display: none;
   }
@@ -331,22 +331,50 @@
     font-size: 20px;
   }
 
-  .navigation-btns{
+  .navigation-btn-side {
     width: 100%;
+    text-align: left;
     background-color: transparent;
     border: none;
-    color: white;
+    color: #fff;
     display: flex;
     align-items: center;
-    justify-content: left; 
-    padding-left: 20px;
-    padding: 10px;
+    padding: 12px 20px;
     font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, padding-left 0.2s ease;
   }
 
-  .navigation-btns:hover{
-    background-color:#085196;
+  .navigation-btn-side:hover,
+  .navigation-btn-side:focus {
+    background-color: #1c6fbd;
+    padding-left: 30px;
+  }
+
+  /* Optional active style */
+  .navigation-btn-side.active {
+    background-color: #1c6fbd;
+    font-weight: 600;
+  }
+
+  .body { background-attachment: scroll; }        /* NEW */
+
+  .form-border-request, .form-border {
+    width: 80%;          /* Changed from 90% */
+    max-width: 900px;
+  }
+
+  .title { font-size: 1.6rem; }
+  .section-title { font-size: 1.2rem; }
+
+  .form-border { padding: 20px; }                 /* Tighter padding on mobile */
+
+  .form-grid {
+    grid-template-columns: 1fr;                   /* Stack to single column */
+    gap: 12px 0;
   }
 
 }
