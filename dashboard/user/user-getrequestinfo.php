@@ -51,6 +51,9 @@
         if (!preg_match("/^[0-9]+$/", strval($age))){
             $raiseError[] = "⚠️ ERROR: Age can only contain numbers.";
         }
+        if (!preg_match("/^[0-9]+$/", strval($age))){
+            $raiseError[] = "⚠️ ERROR: Age can only contain numbers.";
+        }
 
         if (!preg_match("/^[a-zA-Z0-9. ]+$/", $street)){  // lower, upper, space, numbers, period
             $raiseError[] = "⚠️ ERROR: Street name can only contain letters, numbers, and periods"; 
