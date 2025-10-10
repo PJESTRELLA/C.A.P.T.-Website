@@ -16,6 +16,16 @@
           <img src="/Resources/logos/logo-white-short.png" class="img-logo" alt="C.A.P.T. logo"/>
         </div>
         <h1 class="greeting-web" id="welcome">Welcome, (Name)!</h1>
+
+        <script>
+          fetch('/dashboard/user/user-getdata.php')
+            .then(res => res.json())
+            .then(data => {
+              document.getElementById('welcome').textContent =
+                `Welcome, Capt. ${data.name}!`;
+            })
+            .catch(err => console.error('Error fetching user data:', err));
+        </script>
       </div>
 
       <div class="navigation-div">
