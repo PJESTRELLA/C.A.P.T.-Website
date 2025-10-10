@@ -92,12 +92,14 @@
     const formBorder = document.querySelector('.form-border');
 
     // function that reuses the same form and changes only the title
-    function generateForm(title) {
+    function generateForm(title, requestValue) {
       return `
         <h1 class="title">${title}</h1>
-        <form class="details-container" method="POST" action="/dashboard/user/request/submit-${title.toLowerCase().replace(/ /g, '-')}.php" novalidate>
+        <form class="details-container" method="POST" action="/dashboard/user/user-getrequestinfo.php" novalidate>
           <!-- PART 1: PERSONAL INFORMATION -->
           <div class="personal-info">
+            <input type="hidden" name="request_option" value="${requestValue}">
+
             <h2 class="section-title">Part 1: Personal Information</h2>
             <div class="form-grid">
               <label for="lastname">Last Name:</label>
@@ -184,7 +186,7 @@
       }
 
       // Insert generated form
-      formBorder.innerHTML = generateForm(title);
+      formBorder.innerHTML = generateForm(title, value);
     });
   </script>
 </body>
