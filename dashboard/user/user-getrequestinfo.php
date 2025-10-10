@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $servername = "localhost"; 
@@ -37,23 +39,28 @@
         $email = $_POST["email"] ?? '';
 
         $sql = null;
+        $id = null;
+        
+        if (isset($_SESSION['id'])){
+            $id = $_SESSION['id'];
+        }
 
         switch($requestoption){
             case 'clearance':
-                $sql = "INSERT INTO `requestedDocument_BarangayClearance` (`lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO `requestedDocument_BarangayClearance` (`userId`, `lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 break;
             case 'residency':
-                $sql = "INSERT INTO `requestedDocument_BarangayCertificateResidency` (`lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO `requestedDocument_BarangayCertificateResidency` (`userId`, `lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 break;
             case 'indigency':
-                $sql = "INSERT INTO `requestedDocument_BarangayCertificateIndigency` (`lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO `requestedDocument_BarangayCertificateIndigency` (`userId`, `lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 break;
             case 'business':
-                $sql = "INSERT INTO `requestedDocument_BarangayCertificateBusiness` (`lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO `requestedDocument_BarangayCertificateBusiness` (`userId`, `lastName`, `givenName`, `middleName`, `suffix`, `birthday`, `age`, `gender`, `houseNumber`, `street`, `barangay`, `city`, `zip`, `phoneNumber`, `telephoneNumber`, `emailAddress`)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 break;
             default:
                 die("[ERROR]: Unknown request option.");
@@ -61,7 +68,7 @@
 
         try {
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("sssssisssssssss", $lastname, $firstname, $middlename, $suffix, $birthday, $age, $gender, $house, $street, $barangay, $city, $zip, $phone, $telephone, $email);
+            $stmt->bind_param("isssssisssssssss", $id, $lastname, $firstname, $middlename, $suffix, $birthday, $age, $gender, $house, $street, $barangay, $city, $zip, $phone, $telephone, $email);
             $stmt->execute(); // insert actual values into the table 
 
             if ($stmt->affected_rows === 1) { // checks if one row has been added to the table
