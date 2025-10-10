@@ -40,5 +40,6 @@
     }
     $stmt->close();
     $mysqli->close();
-    header('Location: /login.php?err=invalid', true, 303);
+    
+    echo "⚠️ ERROR: Invalid log-in credentials.";
     exit;
