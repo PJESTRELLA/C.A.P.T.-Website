@@ -227,7 +227,31 @@
   background: linear-gradient(135deg, #a9d6ff, #0752c2);
 }
 
+.confirm-input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc; /* subtle line for readability */
+  padding: 6px 4px;
+  width: 100%;
+  color: #222;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
 
+.confirm-input:focus {
+  border-bottom: 1px solid #007bff; /* blue highlight on focus */
+}
+
+.confirm-input:disabled,
+.confirm-input[readonly] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.confirm-input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
 
 @media screen and (max-width: 900px) {
   .header-web{

@@ -82,9 +82,7 @@
     <a class="navigation-btn-side" href="/dashboard/user/user-template.html">Profile</a>
   </div>
 
-  <!-- Scripts -->
   <script>
-    // Mobile sidebar toggling
     const menuBtn = document.querySelector('.menu-btn');
     const closeBtn = document.querySelector('.close-btn');
     const sidebar = document.querySelector('.sidebar');
@@ -101,37 +99,23 @@
     const select = document.getElementById('request-option');
     const formBorder = document.querySelector('.form-border');
 
-    // function that reuses the same form and changes only the title
+    // Generate request form
     function generateForm(title, requestValue) {
       return `
         <h1 class="title">${title}</h1>
-        <form class="details-container" method="POST" action="/dashboard/user/user-getrequestinfo.php" novalidate>
-          <!-- PART 1: PERSONAL INFORMATION -->
+        <form class="details-container" id="dynamic-form" method="POST" action="/dashboard/user/user-getrequestinfo.php" novalidate>
           <div class="personal-info">
             <input type="hidden" name="request_option" value="${requestValue}">
-
             <h2 class="section-title">Part 1: Personal Information</h2>
             <div class="form-grid">
-              <label for="lastname">Last Name:</label>
-              <input id="lastname" type="text" name="lastname" required>
-
-              <label for="firstname">Given Name:</label>
-              <input id="firstname" type="text" name="firstname" required>
-
-              <label for="middlename">Middle Name (If applicable):</label>
-              <input id="middlename" type="text" name="middlename">
-
-              <label for="suffix">Suffix:</label>
-              <input id="suffix" type="text" name="suffix">
-
-              <label for="birthday">Birthday:</label>
-              <input id="birthday" type="date" name="birthday" required>
-
-              <label for="age">Age:</label>
-              <input id="age" type="number" name="age" min="0" required>
-
-              <label for="gender">Gender/Sex:</label>
-              <select id="gender" name="gender" required>
+              <label>Last Name:</label><input class="form-input" name="lastname" required>
+              <label>Given Name:</label><input class="form-input" name="firstname" required>
+              <label>Middle Name:</label><input class="form-input" name="middlename">
+              <label>Suffix:</label><input class="form-input" name="suffix">
+              <label>Birthday:</label><input class="form-input" type="date" name="birthday" required>
+              <label>Age:</label><input class="form-input" type="number" name="age" required>
+              <label>Gender:</label>
+              <select class="form-input" name="gender" required>
                 <option value="">Select</option>
                 <option>Male</option>
                 <option>Female</option>
@@ -140,32 +124,16 @@
             </div>
           </div>
 
-          <!-- PART 2: CONTACT INFORMATION -->
           <h2 class="section-title">Part 2: Contact Information</h2>
           <div class="form-grid">
-            <label for="house">House Number / Street Number:</label>
-            <input id="house" type="text" name="house" required>
-
-            <label for="street">Street:</label>
-            <input id="street" type="text" name="street" required>
-
-            <label for="barangay">Barangay:</label>
-            <input id="barangay" type="text" name="barangay" required>
-
-            <label for="city">City:</label>
-            <input id="city" type="text" name="city" required>
-
-            <label for="zip">ZIP:</label>
-            <input id="zip" type="text" name="zip" required>
-
-            <label for="phone">Phone Number:</label>
-            <input id="phone" type="text" name="phone" inputmode="tel">
-
-            <label for="telephone">Telephone Number:</label>
-            <input id="telephone" type="text" name="telephone" inputmode="tel">
-
-            <label for="email">Email Address:</label>
-            <input id="email" type="email" name="email" required>
+            <label>House Number / Street Number:</label><input class="form-input" name="house" required>
+            <label>Street:</label><input class="form-input" name="street" required>
+            <label>Barangay:</label><input class="form-input" name="barangay" required>
+            <label>City:</label><input class="form-input" name="city" required>
+            <label>ZIP:</label><input class="form-input" name="zip" required>
+            <label>Phone Number:</label><input class="form-input" name="phone">
+            <label>Telephone Number:</label><input class="form-input" name="telephone">
+            <label>Email Address:</label><input class="form-input" type="email" name="email" required>
           </div>
 
           <button type="submit" class="blue-button">Submit Request</button>
@@ -173,31 +141,68 @@
       `;
     }
 
+    function generateConfirmForm(formData, requestValue) {
+      let html = `
+        <h1 class="title">Confirm Information</h1>
+        <form class="details-container" id="confirm-form" method="POST">
+          <input type="hidden" name="request_option" value="${requestValue}">
+          <div class="form-grid">
+      `;
+
+      for (const [key, value] of formData.entries()) {
+        if (key === "request_option") continue;
+        html += `
+          <label>${key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}:</label>
+          <input class="confirm-input" name="${key}" value="${value}" readonly>
+        `;
+      }
+
+      html += `
+          </div>
+          <div class="button-group">
+            <button type="button" id="edit-btn" class="blue-button">Edit</button>
+            <button type="submit" class="blue-button">Confirm & Submit</button>
+          </div>
+        </form>
+      `;
+      return html;
+    }
+
+    function initForm(title, value) {
+      formBorder.innerHTML = generateForm(title, value);
+
+      const form = document.getElementById('dynamic-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        const formData = new FormData(form);
+        formBorder.innerHTML = generateConfirmForm(formData, value);
+
+        document.getElementById('edit-btn').addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          initForm(title, value); 
+        }, { once: true });
+      }, { once: true }); 
+    }
+
     select.addEventListener('change', () => {
       const value = select.value;
       let title = '';
 
       switch (value) {
-        case 'clearance':
-          title = 'Barangay Clearance Request Form';
-          break;
-        case 'residency':
-          title = 'Barangay Certificate of Residency Request Form';
-          break;
-        case 'indigency':
-          title = 'Barangay Certificate of Indigency Request Form';
-          break;
-        case 'business':
-          title = 'Barangay Certificate of Business Request Form';
-          break;
+        case 'clearance': title = 'Barangay Clearance Request Form'; break;
+        case 'residency': title = 'Barangay Certificate of Residency Request Form'; break;
+        case 'indigency': title = 'Barangay Certificate of Indigency Request Form'; break;
+        case 'business': title = 'Barangay Certificate of Business Request Form'; break;
         default:
           formBorder.innerHTML = '<p>Please select a document type above.</p>';
           return;
       }
 
-      // Insert generated form
-      formBorder.innerHTML = generateForm(title, value);
+      initForm(title, value);
     });
   </script>
+
 </body>
 </html>
