@@ -23,29 +23,29 @@
         $consent = isset($_POST['consent']) ? 1 : 0;
 
         if (!preg_match("/^[a-zA-Z ]+$/", $name)){  // lower, upper, space
-            $raiseError[] = "[ERROR]: Name must only contain letters and spaces."; 
+            $raiseError[] = "⚠️ ERROR: Name must only contain letters and spaces."; 
         }
 
         if (!preg_match("/^[a-zA-Z0-9]+$/", $uname)){ // lower, upper, numbers
-            $raiseError[] = "[ERROR]: Username must only contain letters and numbers."; 
+            $raiseError[] = "⚠️ ERROR: Username must only contain letters and numbers."; 
         }
 
         if (strlen($pwd) < 8){ // more than 8 chars 
-            $raiseError[] = "[ERROR]: Password must contain at least eight characters."; 
+            $raiseError[] = "⚠️ ERROR: Password must contain at least eight characters."; 
         }
 
         if (!preg_match("/[a-z]/", $pwd)){ // at least one lowercase
-            $raiseError[] = "[ERROR]: Password must contain at least one lowercase letter."; 
+            $raiseError[] = "⚠️ ERROR: Password must contain at least one lowercase letter."; 
         }
 
         if (!preg_match("/[A-Z]/", $pwd)){ // at least one uppercase
-            $raiseError[] = "[ERROR]: Password must contain at least one uppercase letter."; 
+            $raiseError[] = "⚠️ ERROR: Password must contain at least one uppercase letter."; 
         }
         if (!preg_match("/[0-9]/", $pwd)){ // at least one number
-            $raiseError[] = "[ERROR]: Password must contain at least one numerical character."; 
+            $raiseError[] = "⚠️ ERROR: Password must contain at least one numerical character."; 
         }
         if (!preg_match("/[\W_]/", $pwd)){ // at least one special symbol
-            $raiseError[] = "[ERROR]: Password must contain at least one special symbol."; 
+            $raiseError[] = "⚠️ ERROR: Password must contain at least one special symbol."; 
         }
 
         if (empty($raiseError)){ // checks if no errors
@@ -68,7 +68,9 @@
                 echo "[ERROR]: " . $e->getMessage();
             }
         } else {
-            foreach ($raiseError as $e) { echo "❎ " . htmlspecialchars($e, ENT_QUOTES, 'UTF-8') . "<br>"; }
+            foreach ($raiseError as $e){ 
+                echo htmlspecialchars($e, ENT_QUOTES, 'UTF-8') . "<br>"; 
+            }
         }
     }
     $mysqli->close(); // closes db connection

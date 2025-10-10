@@ -144,7 +144,7 @@
     function generateConfirmForm(formData, requestValue) {
       let html = `
         <h1 class="title">Confirm Information</h1>
-        <form class="details-container" id="confirm-form" method="POST">
+        <form class="details-container" id="confirm-form" method="POST" action="/dashboard/user/user-getrequestinfo.php"> 
           <input type="hidden" name="request_option" value="${requestValue}">
           <div class="form-grid">
       `;

@@ -41,32 +41,32 @@
         $email = $_POST["email"] ?? '';
 
         if (!preg_match("/^[a-zA-Z ]+$/", $lastname) || !preg_match("/^[a-zA-Z ]+$/", $firstname) || (!empty($middlename) && !preg_match("/^[a-zA-Z ]+$/", $middlename))) {
-            $raiseError[] = "[ERROR]: Names can only contain letters and spaces.";
+            $raiseError[] = "⚠️ ERROR: Names can only contain letters and spaces.";
         } 
 
         if (!preg_match("/^[0-9A-Za-z ]+$/", $house)) {
-            $raiseError[] = "[ERROR]: House number can only contain letters, numbers, and spaces.";
+            $raiseError[] = "⚠️ ERROR: House number can only contain letters, numbers, and spaces.";
         }
 
 
         if (!preg_match("/^[a-zA-Z0-9. ]+$/", $street)){  // lower, upper, space, numbers, period
-            $raiseError[] = "[ERROR]: Street name can only contain letters, numbers, and periods"; 
+            $raiseError[] = "⚠️ ERROR: Street name can only contain letters, numbers, and periods"; 
         }
 
         if (!preg_match("/^[a-zA-Z ]+$/", $city)){  // lower, upper, space
-            $raiseError[] = "[ERROR]: City names can only contain letters and spaces."; 
+            $raiseError[] = "⚠️ ERROR: City names can only contain letters and spaces."; 
         }
 
         if (!preg_match("/^[0-9]{4}$/", $zip)) {
-            $raiseError[] = "[ERROR]: ZIP Code must contain exactly 4 digits.";
+            $raiseError[] = "⚠️ ERROR: ZIP Code must contain exactly 4 digits.";
         }
 
         if (!preg_match("/^09[0-9]{9}$/", $phone)) {
-            $raiseError[] = '[ERROR]: Phone number must start with "09" and contain exactly 11 digits.';
+            $raiseError[] = '⚠️ ERROR: Phone number must start with "09" and contain exactly 11 digits.';
         }
 
         if (!empty($telephone) && !preg_match("/^8[0-9]{7}$/", $telephone)) {
-            $raiseError[] = '[ERROR]: Telephone number must start with "8" and contain exactly 8 digits.';
+            $raiseError[] = '⚠️ ERROR: Telephone number must start with "8" and contain exactly 8 digits.';
         }
 
         if (empty($raiseError)){
