@@ -18,9 +18,9 @@
 
       </div>
       <div class = "navigation-div">
-        <button class = "navigation-btn"  onclick="window.location.href='/dashboard/user/user-bulletin.html'" >Bulletin</button>
-        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-request.html'" >Request</button>
-        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-template.html'" >Manage</button>
+        <button class = "navigation-btn"  onclick="window.location.href='/dashboard/admin/admin-bulletin.html'" >Bulletin</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/admin/admin-request.html'" >Request</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/admin/admin-template.html'" >Manage</button>
       </div>
         <button class = "profile-btn">
           <img src="/Resources/icons/person-icon.png" class="profile-img" alt="Settings">
@@ -73,119 +73,57 @@
       </div>
 
       <!-- Scrollable area -->
-  <div class="request-scroll">
-    <div class="request-table">
-      <!-- Sticky header -->
-      <div class="request-grid request-header">
-        <p>Request Id</p>
-        <p>Request Type</p>
-        <p>Requestee Name</p>
-        <p>Date Requested</p>
-        <p>Status</p>
-        <p>Action</p>
+<div class="request-scroll">
+  <div class="request-table">
+    <!-- Sticky header -->
+    <div class="request-grid request-header">
+      <p>Request Id</p>
+      <p>Request Type</p>
+      <p>Requestee Name</p>
+      <p>Date Requested</p>
+      <p>Action</p>
+    </div>
+
+    <!-- Rows -->
+    <div class="request-body">
+      <div class="request-grid request-row">
+        <span>#2025-0012</span>
+        <span>Barangay Clearance</span>
+        <span>Juan Dela Cruz</span>
+        <span>Oct 12, 2025</span>
+        <button class="action-btn" onclick="window.location.href='/dashboard/admin/request-pages/admin-request-view.html'">view</button>
       </div>
 
-      <!-- Rows -->
-      <div class="request-body">
-        <div class="request-grid request-row">
-          <span>#2025-0012</span>
-          <span>Barangay Clearance</span>
-          <span>Juan Dela Cruz</span>
-          <span>Oct 12, 2025</span>
-          <span><em class="status pill success">Approved</em></span>
-          <button class="action-btn" onclick="window.location.href='/dashboard/admin/request-pages/admin-request-view.html'">view</button>
-        </div>
+      <div class="request-grid request-row">
+        <span>#2025-0013</span>
+        <span>Certificate of Residency</span>
+        <span>Maria Santos</span>
+        <span>Oct 11, 2025</span>
+        <button class="action-btn">view</button>
+      </div>
 
-        <div class="request-grid request-row">
-          <span>#2025-0013</span>
-          <span>Certificate of Residency</span>
-          <span>Maria Santos</span>
-          <span>Oct 11, 2025</span>
-          <span><em class="status pill pending">Pending</em></span>
-          <button class="action-btn">view</button>
-        </div>
+      <div class="request-grid request-row">
+        <span>#2025-0014</span>
+        <span>Certificate of Indigency</span>
+        <span>Pedro Cruz</span>
+        <span>Oct 10, 2025</span>
+        <button class="action-btn">view</button>
+      </div>
 
-        <div class="request-grid request-row">
-          <span>#2025-0014</span>
-          <span>Certificate of Indigency</span>
-          <span>Pedro Cruz</span>
-          <span>Oct 10, 2025</span>
-          <span><em class="status pill rejected">Rejected</em></span>
-          <button class="action-btn">view</button>
-        </div>
+      <div class="request-grid request-row">
+        <span>#2025-0015</span>
+        <span>Certificate of Good Moral</span>
+        <span>Ana Dela Cruz</span>
+        <span>Oct 09, 2025</span>
+        <button class="action-btn">view</button>
+      </div>
 
-                <div class="request-grid request-row">
-          <span>#2025-0014</span>
-          <span>Certificate of Indigency</span>
-          <span>Pedro Cruz</span>
-          <span>Oct 10, 2025</span>
-          <span><em class="status pill rejected">Rejected</em></span>
-          <button class="action-btn">view</button>
-        </div>
-
-        <div class="request-grid request-row">
-          <span>#2025-0014</span>
-          <span>Certificate of Indigency</span>
-          <span>Pedro Cruz</span>
-          <span>Oct 10, 2025</span>
-          <span><em class="status pill rejected">Rejected</em></span>
-          <button class="action-btn">view</button>
-        </div>
-
-        <div class="request-grid request-row">
-          <span>#2025-0014</span>
-          <span>Certificate of Indigency</span>
-          <span>Pedro Cruz</span>
-          <span>Oct 10, 2025</span>
-          <span><em class="status pill rejected">Rejected</em></span>
-          <button class="action-btn">view</button>
-        </div>
-
-        <div class="request-grid request-row">
-          <span>#2025-0014</span>
-          <span>Certificate of Indigency</span>
-          <span>Pedro Cruz</span>
-          <span>Oct 10, 2025</span>
-          <span><em class="status pill rejected">Rejected</em></span>
-          <button class="action-btn">view</button>
-        </div>
-
-        <div class="request-grid request-row">
-          <span>#2025-0014</span>
-          <span>Certificate of Indigency</span>
-          <span>Pedro Cruz</span>
-          <span>Oct 10, 2025</span>
-          <span><em class="status pill rejected">Rejected</em></span>
-          <button class="action-btn">view</button>
-        </div>
-
-        <div class="request-grid request-row">
-          <span>#2025-0014</span>
-          <span>Certificate of Indigency</span>
-          <span>Pedro Cruz</span>
-          <span>Oct 10, 2025</span>
-          <span><em class="status pill rejected">Rejected</em></span>
-          <button class="action-btn">view</button>
-        </div>
-
-        <div class="request-grid request-row">
-          <span>#2025-0014</span>
-          <span>Certificate of Indigency</span>
-          <span>Pedro Cruz</span>
-          <span>Oct 10, 2025</span>
-          <span><em class="status pill rejected">Rejected</em></span>
-          <button class="action-btn">view</button>
-        </div>
-
-        <div class="request-grid request-row">
-          <span>#2025-0014</span>
-          <span>Certificate of Indigency</span>
-          <span>Pedro Cruz</span>
-          <span>Oct 10, 2025</span>
-          <span><em class="status pill rejected">Rejected</em></span>
-          <button class="action-btn">view</button>
-        </div>
-
+      <div class="request-grid request-row">
+        <span>#2025-0016</span>
+        <span>Barangay Clearance</span>
+        <span>Jose Rizal</span>
+        <span>Oct 08, 2025</span>
+        <button class="action-btn">view</button>
       </div>
     </div>
   </div>
