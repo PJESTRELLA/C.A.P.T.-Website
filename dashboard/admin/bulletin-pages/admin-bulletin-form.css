@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 .header-div{
   border-image: linear-gradient(135deg, #053969, rgb(53, 122, 192), #053969) 1;
   background: linear-gradient(135deg,#053969,rgb(53, 122, 192), #053969);
@@ -100,120 +105,147 @@
 .sidebar{
   display: none;
 }
-.option-panel{
-  display: none;
-}
 
-.main-body {
-  min-height: calc(100vh - 60px);
-  background-color: white; /* optional */
+.body {
+  background-image: url("/Resources/background/bg-design.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  
+  /* Center content horizontally and vertically */
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 60px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  /* Take full viewport height */
+  height: 100vh;
+
+  font-family: 'Poppins', sans-serif;
   padding: 30px;
+
+  /* Prevent scrollbars */
+  overflow: hidden;
 }
 
-.announcements, .events {
-  flex: 1;
-  display: flex;
-  flex-direction: column; /* stack title + feed vertically */
-  height: calc(100vh - 100px);
-  border: 5px solid #044480;
-  border-radius: 16px;
-  box-sizing: border-box;
-  background-color: #044480;
-  overflow: hidden; /* prevent parent from scrolling */
-}
-
-.announcements-title, .events-title {
-  width: 100%;
-  color: white;
-  font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 25px;
-  text-align: center;
-  padding: 3px;
-  margin: 0;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  box-sizing: border-box;
-}
-
-.post-feed {
-  flex: 1; 
-  overflow-y: auto; 
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: #ffffff;
-  display: flex;          /* enables gap */
-  flex-direction: column; /* stack posts vertically */
-  gap: 20px;   
-}
-
-.post-feed::-webkit-scrollbar {
-  width: 15px;
-}
-
-.post-feed::-webkit-scrollbar-thumb {
-  background-color: #737373;       
-  border: 2px solid #e0e6f0;       
-  border-radius: 15px;             
-  background-clip: padding-box;    
-}
-
-.post-feed::-webkit-scrollbar-track {
-  background-color: #d9d9d9;       
-  border-radius: 15px;
-}
-
-.posts {
+.form-border-request{
+  width: 900px;
   border: 2px solid #053969;
-  border-radius: 8px;
-  padding: 20px;              
-  margin-left: 25px;   
-  margin-right: 25px;            
-  background-color: #fbf7f7;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-  text-align: center;
-}
-
-.post-img {
-  width: 100%;              
-  object-fit: contain;         
-  border-radius: 6px;
-  display: block;            
+  border-radius: 25px;
+  background: linear-gradient(
+  135deg,
+  rgba(255, 255, 255, 0.25),
+  rgba(255, 255, 255, 0.1)
+  );
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 10px 40px rgba(5, 57, 105, 0.25);
+  margin: 10px auto;
   padding: 20px;
+  color: #053969;
+  align-items: center;
 }
 
-.post-title{
-  color:black;
-  font-family: 'poppins', Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 16px;
-  text-align: justify;
-  padding-bottom: 10px;
+.back-btn {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #053969;
+  border-radius: 50%;
+  background: white;
+  color: #053969;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
 }
 
-.post-date{
-  color:rgb(98, 98, 98);
-  font-family: 'poppins', Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 14px;
-  text-align: justify;
-  padding-bottom: 10px;
+.back-btn:hover {
+  background: #053969;
+  color: white;
+  box-shadow: 0 0 15px rgba(5, 57, 105, 0.5);
+  transform: translateY(-2px);
 }
 
-.post-caption{
-  color:black;
-  font-family: 'poppins', Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 14px;
-  text-align: justify;
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
+.form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #053969;
+}
 
+label {
+  font-weight: 600;
+  color: #053969;
+}
+
+input[type="text"],
+textarea,
+input[type="file"] {
+  padding: 10px;
+  border: 2px solid #053969;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  transition: 0.3s;
+}
+
+textarea {
+  resize: none; /* disables resizing */
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #2781db;
+  box-shadow: 0 0 8px rgba(39, 129, 219, 0.4);
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #053969, #085195, #2781db);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(5, 57, 105, 0.3);
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #2781db, #085195, #053969);
+  box-shadow: 0 15px 35px rgba(5, 57, 105, 0.5);
+}
 
 @media (max-width: 900px) {
+    .body {
+    padding-top: 0;       /* removes top padding */
+    margin-top: 0;        /* ensures no margin creates gap */
+    height: calc(100vh - 60px); /* ensures full view minus header */
+    justify-content: flex-start; /* align content just below header */
+  }
+
+  .form-border-request {
+    margin-top: 0;        /* prevent extra margin pushing form down */
+  }
+  
   .header-web{
     display: none;
   }
@@ -351,89 +383,57 @@
     font-weight: 600;
   }
 
-  .main-body {
-    flex-direction: column;
+  /* Card/form container */
+  .form-border-request {
+    width: min(680px, 92vw);     /* fit nicely in half-screen */
+    margin: 12px auto;
+    padding: 20px;
+    box-shadow: 0 8px 28px rgba(5, 57, 105, 0.22);
+    border-radius: 18px;
   }
 
-  .option-panel {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* adds space between buttons */
+  /* Form internals */
+  .request-form {
+    max-width: 560px;
+    gap: 12px;
   }
-  
-  .main-body {
-    display: block;
+  .form-title {
+    font-size: 1.4rem;
+    margin-bottom: 14px;
   }
-
-  .announcements,
-  .events {
-    display: block;       /* normal block flow */
-    height: auto;         /* auto-sized by content */
-    max-height: none;     /* cancel any limits */
-    overflow: visible;    /* no internal scrolling */
+  label {
+    font-size: 0.95rem;
   }
 
-  /* active = visible; inactive = hidden (no layout space) */
-  .announcements.active,
-  .events.active {
-    display: block;
+  input[type="text"],
+  textarea,
+  input[type="file"] {
+    font-size: 1rem;
+    padding: 12px;
+    border-radius: 10px;
   }
 
-  .announcements:not(.active),
-  .events:not(.active) {
-    display: none;        /* use none so it doesn't occupy space */
-    /* opacity/pointer-events not needed when display:none */
+  textarea {
+    max-height: 36vh;            /* stay within viewport to avoid scrollbars */
   }
 
-  /* Buttons */
-  .announcements-btn,
-  .events-btn {
-    display: block;
-    width: 40%;
-    margin-top: 30px;
-    padding: 15px;
-    background: radial-gradient(circle, #1161b0 0%, #053969 100%);
-    border: none;
-    border-radius: 15px;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(5, 57, 105, 0.4);
-    transition: all 0.3s ease;
-    justify-self: center;
-    text-align: center;       /* centers text inside the button */
-    white-space: nowrap;      /* prevents text wrapping to a new line */
-    overflow: hidden;         /* hides anything that overflows */
-    text-overflow: ellipsis;  /* adds “...” if text is too long */
-    box-sizing: border-box;   /* keeps padding within the 40% width */
+  .submit-btn {
+    padding: 12px 14px;
+    font-size: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 22px rgba(5, 57, 105, 0.28);
+  }
+
+  /* Back button: slightly smaller */
+  .back-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  /* Optional: if width gets tight, let logo/nav breathe */
+  .logo-greeting-div { width: 65%; }
+  .img-logo-div { padding-left: 8px; }
 }
 
-  .announcements-btn:hover,
-  .events-btn:hover {
-    background: radial-gradient(circle, #89c4ff 0%, #053969 100%);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 30px rgba(5, 57, 105, 0.6);
-  }
-
-  /* Title scrolls with content */
-  .announcements-title, .events-title  {
-    position: static;
-    font-size: 1.8rem;
-    color: white;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  }
-
-  /* Post feed expands naturally (no inner scroll) */
-  .post-feed {
-    height: auto;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .posts {
-    margin-left: 5px;   
-    margin-right: 5px;  
-  }
-
-}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>C.A.P.T. Admin Dashboard</title>
+  <!-- Use forward slashes for web paths -->
+  <link rel="stylesheet" href="/dashboard/admin/bulletin-pages/admin-bulletin-form.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <header class="header-div">
+    <div class="header-web">
+      <div class="logo-greeting-div">
+        <div class="img-logo-div">
+          <img src="/Resources/logos/logo-white-short.png" class="img-logo" alt="C.A.P.T. logo"/>
+        </div>
+        <h1 class="greeting-web" id="welcome">Welcome, C.A.P.T.!</h1>
+      </div>
+
+      <div class="navigation-div">
+        <button class = "navigation-btn"  onclick="window.location.href='/dashboard/user/user-bulletin.html'" >Bulletin</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-request.html'" >Request</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-template.html'" >Manage</button>
+      </div>
+
+      <button class="profile-btn" aria-label="Profile">
+        <img src="/Resources/icons/person-icon.png" class="profile-img" alt="Settings"/>
+      </button>
+    </div>
+
+    <div class="header-mobile">
+      <button class="menu-btn" aria-label="Open menu">☰</button>
+      <div class="logo-title-div">
+        <div class="img-logo-div-mobile">
+          <img src="/Resources/logos/logo-white-short.png" class="img-logo-mobile" alt="C.A.P.T. logo"/>
+        </div>
+        <h1 class="greeting-mobile">C.A.P.T.</h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="body">
+    <div class="form-border-request">
+      <button class="back-btn" onclick="window.history.back()">&#8592;</button>
+
+      <form class="request-form">
+        <h2 class="form-title">Create a New Announcement</h2>
+
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter title..." required>
+
+        <label for="caption">Caption</label>
+        <textarea id="caption" name="caption" placeholder="Enter caption..." rows="5" required></textarea>
+
+        <label for="image">Upload Image Source</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-topbar">
+      <h1 class="sidebar-title">Navigation</h1>
+      <button class="close-btn" aria-label="Close menu">X</button>
+    </div>
+    <a class="navigation-btn-side" href="/dashboard/user/user-bulletin.html">Bulletin</a>
+    <a class="navigation-btn-side" href="/dashboard/user/user-request.html">Request</a>
+    <a class="navigation-btn-side" href="/dashboard/user/user-template.html">Manage</a>
+    <a class="navigation-btn-side" href="/dashboard/user/user-template.html">Profile</a>
+  </div>
+
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const closeBtn = document.querySelector('.close-btn');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (menuBtn && sidebar) {
+      menuBtn.addEventListener('click', () => sidebar.classList.add('active'));
+    }
+    if (closeBtn && sidebar) {
+      closeBtn.addEventListener('click', () => sidebar.classList.remove('active'));
+    }
+  </script>
+
+  <script>
+    const captionWrapper = document.querySelector('.caption-wrapper');
+    const captionBox = document.getElementById('caption');
+    const toolbarButtons = document.querySelectorAll('.toolbar button');
+
+    captionBox.addEventListener('focus', () => {
+      captionWrapper.classList.add('active');
+    });
+    captionBox.addEventListener('blur', () => {
+      captionWrapper.classList.remove('active');
+    });
+
+    toolbarButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const command = button.dataset.command;
+        document.execCommand(command, false, null);
+        button.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

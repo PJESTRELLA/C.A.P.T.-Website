@@ -105,6 +105,11 @@
 }
 
 .main-body {
+  background-image: url("/Resources/background/bg-design.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
   min-height: calc(100vh - 60px);
   background-color: white; /* optional */
   display: flex;
@@ -112,14 +117,15 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 60px;
-  padding: 30px;
+  padding: 30px 30px 0 30px; /* keep padding on top/sides, remove bottom */
+  margin-bottom: 0;  /* ensure no margin below */
 }
 
 .announcements, .events {
   flex: 1;
   display: flex;
   flex-direction: column; /* stack title + feed vertically */
-  height: calc(100vh - 100px);
+  height: calc(100vh - 110px);
   border: 5px solid #044480;
   border-radius: 16px;
   box-sizing: border-box;
@@ -211,20 +217,96 @@
   text-align: justify;
 }
 
+.button-wrapper {
+  display: flex;
+  justify-content: flex-start; 
+}
 
+.remove-btn {
+  display: inline-flex;
+  align-items: center;          
+  justify-content: flex-start;  
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #f8d7da;
+  color: #a10000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 0;   
+  margin-bottom: 5px;            
+}
+
+.remove-btn::before {
+  content: "✖";
+  color: red;
+  font-size: 1.1rem;
+  margin-right: 8px;
+  display: flex;                
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-btn:hover {
+  background: #a10000;
+  color: white;          
+}
+
+.button-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;     
+  gap: 20px;              
+}
+
+.make-post {
+  display: block;
+  width: 90%;
+  height: 100px;
+  margin: 5px auto;
+  padding: 20px;
+  background: #ffffff93; 
+  border: 3px solid #053969; 
+  border-radius: 15px;
+  color: #053969; 
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 
+    0 8px 25px rgba(5, 57, 105, 0.4),  
+    0 4px 10px rgba(5, 57, 105, 0.25); 
+  transition: all 0.3s ease;
+}
+
+.make-post:hover {
+  background: linear-gradient(145deg, #eaf2ff 0%, #cfe3ff 50%, #b1d3ff 100%);
+  color: #032b5a;
+  border-color: #032b5a;
+  box-shadow: 
+    0 12px 35px rgba(5, 57, 105, 0.55),
+    0 0 20px rgba(39, 129, 219, 0.4);
+  transform: translateY(-4px);
+}
+
+.make-post:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(5, 57, 105, 0.4);
+}
 
 @media (max-width: 900px) {
-  .header-web{
+  .header-web {
     display: none;
   }
 
-  .header-mobile{
+  .header-mobile {
     height: 100%;
     display: flex;
     flex-direction: row;
   }
-  
-  .menu-btn{
+
+  .menu-btn {
     width: 10%;
     color: white;
     background-color: transparent;
@@ -232,15 +314,14 @@
     font-size: 20px;
   }
 
-
   .logo-title-div {
     height: 100%;
     width: 90%;
-    padding-right: 10%; /*Centers with accordance to menu button3*/
+    padding-right: 10%;
     display: flex;
     flex-direction: row;
-    align-items: center;      
-    justify-content: center;  
+    align-items: center;
+    justify-content: center;
   }
 
   .img-logo-div-mobile {
@@ -256,14 +337,14 @@
 
   .greeting-mobile {
     height: 100%;
-    width: auto; 
+    width: auto;
     color: white;
     font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
     font-size: 40px;
     display: flex;
     align-items: center;
-    justify-content: center; 
-    padding-left: 10px; 
+    justify-content: center;
+    padding-left: 10px;
   }
 
   .sidebar {
@@ -271,52 +352,52 @@
     top: 0;
     left: 0;
     width: 250px;
-    height: 100vh; 
-    z-index: 1000; 
+    height: 100vh;
+    z-index: 5000;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background: linear-gradient(to bottom, #053969,rgb(53, 122, 192), #053969);
-    overflow-y: auto; 
+    background: linear-gradient(to bottom, #053969, rgb(53, 122, 192), #053969);
+    overflow-y: auto;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.558);
     transition: transform 0.5s ease-in-out;
-    transform: translateX(-100%); /* hidden */
+    transform: translateX(-100%);
   }
 
   .sidebar.active {
-    transform: translateX(0); /* visible */
+    transform: translateX(0);
   }
 
   .sidebar-topbar {
     height: 60px;
     display: flex;
     align-items: center;
-    justify-content: left; 
+    justify-content: left;
     flex-direction: row;
     border-bottom: 1px solid white;
   }
 
-  .sidebar-title{
+  .sidebar-title {
     width: 80%;
     color: white;
     display: flex;
     align-items: center;
-    justify-content: left; 
+    justify-content: left;
     padding: 10px;
     font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
     font-size: 20px;
     cursor: pointer;
-    transition: transform 0.6s ease; /* smooth spin */
+    transition: transform 0.6s ease;
   }
 
-  .close-btn{
+  .close-btn {
     width: 20%;
     background-color: transparent;
     border: none;
     color: white;
     display: flex;
     align-items: center;
-    justify-content: right; 
+    justify-content: right;
     padding-right: 20px;
     font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
     font-size: 20px;
@@ -345,35 +426,65 @@
     padding-left: 30px;
   }
 
-  /* Optional active style */
   .navigation-btn-side.active {
     background-color: #1c6fbd;
     font-weight: 600;
   }
 
+  html,
+  body {
+    overflow: auto;
+  }
+
+  :root {
+    --mobile-sticky-offset: 0px;
+    --button-panel-h: 64px;
+  }
+
   .main-body {
+    display: flex;
     flex-direction: column;
   }
 
+  .button-panel {
+    order: -2;
+    position: relative;
+    top: auto;
+    z-index: 1200;
+    background: #fff;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
   .option-panel {
+    order: -1;
+    position: sticky;
+    top: var(--mobile-sticky-offset);
+    z-index: 1100;
+    background: #fff;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
     display: flex;
     justify-content: center;
-    gap: 20px; /* adds space between buttons */
-  }
-  
-  .main-body {
-    display: block;
+    gap: 20px;
   }
 
   .announcements,
   .events {
-    display: block;       /* normal block flow */
-    height: auto;         /* auto-sized by content */
-    max-height: none;     /* cancel any limits */
-    overflow: visible;    /* no internal scrolling */
+    display: block;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    padding-top: 10px;
   }
 
-  /* active = visible; inactive = hidden (no layout space) */
   .announcements.active,
   .events.active {
     display: block;
@@ -381,16 +492,14 @@
 
   .announcements:not(.active),
   .events:not(.active) {
-    display: none;        /* use none so it doesn't occupy space */
-    /* opacity/pointer-events not needed when display:none */
+    display: none;
   }
 
-  /* Buttons */
   .announcements-btn,
   .events-btn {
     display: block;
-    width: 40%;
-    margin-top: 30px;
+    width: 48%;
+    margin-top: 0;
     padding: 15px;
     background: radial-gradient(circle, #1161b0 0%, #053969 100%);
     border: none;
@@ -402,12 +511,12 @@
     box-shadow: 0 10px 25px rgba(5, 57, 105, 0.4);
     transition: all 0.3s ease;
     justify-self: center;
-    text-align: center;       /* centers text inside the button */
-    white-space: nowrap;      /* prevents text wrapping to a new line */
-    overflow: hidden;         /* hides anything that overflows */
-    text-overflow: ellipsis;  /* adds “...” if text is too long */
-    box-sizing: border-box;   /* keeps padding within the 40% width */
-}
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+  }
 
   .announcements-btn:hover,
   .events-btn:hover {
@@ -416,15 +525,14 @@
     box-shadow: 0 15px 30px rgba(5, 57, 105, 0.6);
   }
 
-  /* Title scrolls with content */
-  .announcements-title, .events-title  {
+  .announcements-title,
+  .events-title {
     position: static;
     font-size: 1.8rem;
     color: white;
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
   }
 
-  /* Post feed expands naturally (no inner scroll) */
   .post-feed {
     height: auto;
     max-height: none;
@@ -432,8 +540,17 @@
   }
 
   .posts {
-    margin-left: 5px;   
-    margin-right: 5px;  
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
+  .make-post {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  
 }
