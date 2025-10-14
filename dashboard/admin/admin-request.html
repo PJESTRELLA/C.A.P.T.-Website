@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C.A.P.T. User Dashboard</title>
+  <link rel="stylesheet" href="/dashboard/admin/admin-request.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class = "header-div">
+    <div class = "header-web">
+      <div class = "logo-greeting-div">
+        <div class = "img-logo-div">
+        <img src = "/Resources/logos/logo-white-short.png" class = "img-logo">
+        </div>
+        <h1 class = "greeting-web" id="welcome">Welcome, C.A.P.T.!</h1>
+
+      </div>
+      <div class = "navigation-div">
+        <button class = "navigation-btn"  onclick="window.location.href='/dashboard/user/user-bulletin.html'" >Bulletin</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-request.html'" >Request</button>
+        <button class = "navigation-btn" onclick="window.location.href='/dashboard/user/user-template.html'" >Manage</button>
+      </div>
+        <button class = "profile-btn">
+          <img src="/Resources/icons/person-icon.png" class="profile-img" alt="Settings">
+        </button>
+    </div>
+
+    <div class = "header-mobile">
+      <button class = "menu-btn">☰</button>
+      <div class = "logo-title-div">
+        <div class = "img-logo-div-mobile">
+        <img src = "/Resources/logos/logo-white-short.png" class = "img-logo-mobile">
+        </div>
+        <h1 class = "greeting-mobile">C.A.P.T.</h1>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-body">
+    <div class = "button-panel">
+      <button class = "pending" onclick="window.location.href='/dashboard/admin/admin-request.html'">Pending</button>
+      <button class = "approved" onclick="window.location.href='/dashboard/admin/request-pages/admin-request-approved.html'">Approved</button>
+      <button class = "rejected" onclick="window.location.href='/dashboard/admin/request-pages/admin-request-rejected.html'">Rejected</button>
+    </div>
+    
+    <div class="request">
+      <h1 class="request-title">Pending Requests</h1>
+
+      <div class="toolbar">
+        <input class="form-input" placeholder="Search..."  name="search" required>
+
+        <div class="reqeust-grid">
+          <select id="request-option" name="request-option" required>
+            <option value="">All Requests</option>
+            <option value="clearance">Barangay Clearance</option>
+            <option value="residency">Barangay Certificate of Residency</option>
+            <option value="indigency">Barangay Certificate of Indigency</option>
+            <option value="business">Barangay Certificate of Business</option>
+          </select>
+        </div>
+
+        <div class="sort-grid">
+          <select id="sort-option" name="sort-option" required>
+            <option value="">All Requests</option>
+            <option value="aoa">Alphabetical Ascending Order (A-Z)</option>
+            <option value="ado">Alphabetical Descending Order (Z-A)</option>
+            <option value="dod">Descending Order by Date (Newest to Oldest)</option>
+            <option value="aod">Ascending Order by Date (Oldest to Newest)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Scrollable area -->
+  <div class="request-scroll">
+    <div class="request-table">
+      <!-- Sticky header -->
+      <div class="request-grid request-header">
+        <p>Request Id</p>
+        <p>Request Type</p>
+        <p>Requestee Name</p>
+        <p>Date Requested</p>
+        <p>Status</p>
+        <p>Action</p>
+      </div>
+
+      <!-- Rows -->
+      <div class="request-body">
+        <div class="request-grid request-row">
+          <span>#2025-0012</span>
+          <span>Barangay Clearance</span>
+          <span>Juan Dela Cruz</span>
+          <span>Oct 12, 2025</span>
+          <span><em class="status pill success">Approved</em></span>
+          <button class="action-btn" onclick="window.location.href='/dashboard/admin/request-pages/admin-request-view.html'">view</button>
+        </div>
+
+        <div class="request-grid request-row">
+          <span>#2025-0013</span>
+          <span>Certificate of Residency</span>
+          <span>Maria Santos</span>
+          <span>Oct 11, 2025</span>
+          <span><em class="status pill pending">Pending</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+        <div class="request-grid request-row">
+          <span>#2025-0014</span>
+          <span>Certificate of Indigency</span>
+          <span>Pedro Cruz</span>
+          <span>Oct 10, 2025</span>
+          <span><em class="status pill rejected">Rejected</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+                <div class="request-grid request-row">
+          <span>#2025-0014</span>
+          <span>Certificate of Indigency</span>
+          <span>Pedro Cruz</span>
+          <span>Oct 10, 2025</span>
+          <span><em class="status pill rejected">Rejected</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+        <div class="request-grid request-row">
+          <span>#2025-0014</span>
+          <span>Certificate of Indigency</span>
+          <span>Pedro Cruz</span>
+          <span>Oct 10, 2025</span>
+          <span><em class="status pill rejected">Rejected</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+        <div class="request-grid request-row">
+          <span>#2025-0014</span>
+          <span>Certificate of Indigency</span>
+          <span>Pedro Cruz</span>
+          <span>Oct 10, 2025</span>
+          <span><em class="status pill rejected">Rejected</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+        <div class="request-grid request-row">
+          <span>#2025-0014</span>
+          <span>Certificate of Indigency</span>
+          <span>Pedro Cruz</span>
+          <span>Oct 10, 2025</span>
+          <span><em class="status pill rejected">Rejected</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+        <div class="request-grid request-row">
+          <span>#2025-0014</span>
+          <span>Certificate of Indigency</span>
+          <span>Pedro Cruz</span>
+          <span>Oct 10, 2025</span>
+          <span><em class="status pill rejected">Rejected</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+        <div class="request-grid request-row">
+          <span>#2025-0014</span>
+          <span>Certificate of Indigency</span>
+          <span>Pedro Cruz</span>
+          <span>Oct 10, 2025</span>
+          <span><em class="status pill rejected">Rejected</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+        <div class="request-grid request-row">
+          <span>#2025-0014</span>
+          <span>Certificate of Indigency</span>
+          <span>Pedro Cruz</span>
+          <span>Oct 10, 2025</span>
+          <span><em class="status pill rejected">Rejected</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+        <div class="request-grid request-row">
+          <span>#2025-0014</span>
+          <span>Certificate of Indigency</span>
+          <span>Pedro Cruz</span>
+          <span>Oct 10, 2025</span>
+          <span><em class="status pill rejected">Rejected</em></span>
+          <button class="action-btn">view</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class ="sidebar">
+    <div class = "sidebar-topbar">
+      <h1 class = "sidebar-title">Navigation</h1>
+      <button class = "close-btn">X</button>
+    </div>
+    <a class="navigation-btn-side" href="/dashboard/user/user-bulletin.html">Bulletin</a>
+    <a class="navigation-btn-side" href="/dashboard/user/user-request.html">Request</a>
+    <a class="navigation-btn-side" href="/dashboard/user/user-template.html">Manage</a>
+    <a class="navigation-btn-side" href="/dashboard/user/user-profile.html">Profile</a>
+  </div>
+
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const closeBtn = document.querySelector('.close-btn');
+    const sidebar = document.querySelector('.sidebar');
+
+    // Show sidebar when menu button is clicked
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+    });
+  </script>
+
+  
+</body>
+</html>
