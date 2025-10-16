@@ -22,7 +22,15 @@
         $caption = ($_POST['caption'] ?? '');
         $image = $_FILES['image'] ?? null;
 
+        // INPUT VALIDATION AND SANITATION
 
+        // Trims and sanitize HTML
+        $title = trim($title);
+        $caption = trim($caption);
+        $title = htmlspecialchars($title, ENT_QUOTES, "UTF-8");
+        $caption = htmlspecialchars($caption, ENT_QUOTES, "UTF-8");
+
+        // Required Fields: ALL
         if ($title === '') {
             $raiseError[] = "⚠️ ERROR: Title is required.";
         }
@@ -32,13 +40,33 @@
         if (!$image || $image['error'] === UPLOAD_ERR_NO_FILE) {
             $raiseError[] = "⚠️ ERROR: Image is required.";
         }
+
+        // Length validation: based on data type
+        if (strlen($title) > 200) {
+            $raiseError[] = "⚠️ ERROR: Title exceeds max size allowed. Title must not exceed 200 characters.";
+        }
+        if (strlen($caption) > 65535) {
+            $raiseError[] = "⚠️ ERROR: Caption exceeds max size limit.";
+        }
+
+        // Character validation
+        if (!preg_match("/^[a-zA-Z0-9\s\p{P}]+$/u", $title)) {
+            $raiseError[] = "⚠️ ERROR: Title contains invalid characters.";
+        }
+        if (!preg_match("/^[a-zA-Z0-9\s\p{P}]+$/u", $caption)) {
+            $raiseError[] = "⚠️ ERROR: Caption contains invalid characters.";
+        }
+
+        // Image Validation: File size and extension
+        if ($image['size'] > 2 * 1024 * 1024) { // 2MB max
+            $raiseError[] = "⚠️ ERROR: Image file size exceeds 2MB.";
+        }
         if ($image && $image['error'] === UPLOAD_ERR_OK) {
             $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
             if (!in_array($image['type'], $allowedTypes)) {
                 $raiseError[] = "⚠️ ERROR: Only JPEG, PNG, and JPG file types are allowed.";
             }
         }
-
 
         if (!empty($raiseError)) {
             foreach ($raiseError as $error) {
