@@ -56,55 +56,15 @@
   <div class = "main-body">
     <div class = "announcements">
       <H1 class = "announcements-title">Announcements</H1>
-      <div class = "post-feed">
-        <div class = "posts">
-          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
-          <h2 class = "post-title">Main Caption - Announcements</h2>
-          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </h3>
-          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
-        </div>
-        <div class = "posts">
-          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
-          <h2 class = "post-title">Main Caption</h2>
-          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </h3>
-          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
-        </div>
-        <div class = "posts">
-          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
-          <h2 class = "post-title">Main Caption</h2>
-          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </h3>
-          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
-        </div>
+      <div class = "post-feed" id="announcements-feed">
+        <p>Loading announcements...</p>
       </div>
     </div>
 
-    <div class = "events">
-      <H1 class = "events-title">Events</H1>
-      <div class = "post-feed">
-        <div class = "posts">
-          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
-          <h2 class = "post-title">Main Caption - Events</h2>
-          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </h3>
-          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
-        </div>
-        <div class = "posts">
-          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
-          <h2 class = "post-title">Main Caption</h2>
-          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </h3>
-          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
-        </div>
-        <div class = "posts">
-          <h3 class = "post-date">Date Posted: MM/DD/YYYY</h3>
-          <h2 class = "post-title">Main Caption</h2>
-          <h3 class = "post-caption">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </h3>
-          <img class = "post-img" src = "\Resources\example\example-annoucement.jpg">
-        </div>
+    <div class="events">
+      <H1 class="events-title">Events</H1>
+      <div class="post-feed" id="events-feed">
+        <p>Loading events...</p>
       </div>
     </div>
   </div>
@@ -134,6 +94,7 @@
       sidebar.classList.remove('active');
     });
   </script>
+
   <script>
     const announcementsBtn = document.querySelector('.announcements-btn');
     const eventsBtn = document.querySelector('.events-btn');
@@ -198,6 +159,60 @@
       t = setTimeout(applyLayout, 150);
     });
   </script>
+
+  <!-- ADD: script to load announcements and events -->
+   <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const announcementsFeed = document.getElementById("announcements-feed");
+      const eventsFeed = document.getElementById("events-feed");
+
+      fetch("/dashboard/admin/bulletin-pages/get-announcements.php")
+        .then(res => res.json())
+        .then(data => {
+          announcementsFeed.innerHTML = "";
+          if (data.length === 0) {
+            announcementsFeed.innerHTML = "<p>No announcements found.</p>";
+            return;
+          }
+
+          data.forEach(announcement => {
+            const post = document.createElement('div');
+            post.classList.add('posts');
+            post.innerHTML = `
+              <h3 class = "post-date">Date Posted: ${announcement.timeCreated}</h3>
+              <h2 class = "post-title">${announcement.title}</h2>
+              <h3 class = "post-caption">${announcement.caption}</h3>
+              <img class = "post-img" src = "${announcement.image}" alt="Announcement image">
+            `;
+            announcementsFeed.appendChild(post);
+          });
+        })
+        .catch(() => announcementsFeed.innerHTML = "<p>Failed to load announcements.</p>");
+
+      fetch("/dashboard/admin/bulletin-pages/get-events.php")
+        .then(res => res.json())
+        .then(data => {
+          eventsFeed.innerHTML = "";
+          if (data.length === 0) {
+            eventsFeed.innerHTML = "<p>No events found.</p>";
+            return;
+          }
+
+          data.forEach(event => {
+            const post = document.createElement('div');
+            post.classList.add('posts');
+            post.innerHTML = `
+                <h3 class = "post-date">Date Posted: ${event.timeCreated}</h3>
+                <h2 class = "post-title">${event.title}</h2>
+                <h3 class = "post-caption">${event.caption}</h3>
+                <img class = "post-img" src = "${event.image}" alt="Event image">
+              `;
+            eventsFeed.appendChild(post);
+          });
+        })
+        .catch(() => eventsFeed.innerHTML = "<p>Failed to load events.</p>");
+    });
+   </script>
   
 </body>
 </html>
