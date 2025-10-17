@@ -46,15 +46,15 @@
   <div class = "main-body">
     <div class = "announcements">
       <H1 class = "announcements-title">Announcements</H1>
-      <div class = "post-feed" id="announcements-feed"> <!-- ADD: id, REMOVE: classes: posts, button-wrapper, remove-btn, post-date/title/caption/img --> 
-        <p class="loading">Loading announcements...</p> <!-- ADD: class loading -->
+      <div class = "post-feed" id="announcements-feed">
+        <p>Loading announcements...</p>
       </div>
     </div>
 
     <div class = "events">
       <H1 class = "events-title">Events</H1>
-      <div class = "post-feed" id="events-feed"> <!-- ADD: id, REMOVE: classes: posts, button-wrapper, remove-btn, post-date/title/caption/img -->
-          <p class="loading">Loading events...</p> <!-- ADD: class loading -->
+      <div class = "post-feed" id="events-feed">
+          <p>Loading events...</p>
       </div>
     </div>
 
@@ -95,6 +95,7 @@
       sidebar.classList.remove('active');
     });
   </script>
+
   <script>
     const announcementsBtn = document.querySelector('.announcements-btn');
     const eventsBtn = document.querySelector('.events-btn');
@@ -159,6 +160,7 @@
       t = setTimeout(applyLayout, 150);
     });
   </script>
+
   <!-- ADD: script to load announcements -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -193,6 +195,7 @@
         .catch(() => announcementsFeed.innerHTML = "<p>Failed to load announcements.</p>");
     });
   </script>
+  
   <!-- ADD: script to load events -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
